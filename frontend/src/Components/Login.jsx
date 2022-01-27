@@ -27,6 +27,12 @@ function Login() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  useEffect((e) => {
+    // e.preventDefault()
+    // window.location.reload(true);
+    console.log("Login page");
+  });
+
   useEffect(() => {
     if (userInfo) {
       // if (userInfo.data.isInstructor === true) {

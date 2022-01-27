@@ -13,7 +13,7 @@ LIST OF CONTROLLERS
 
 // Register New user
 const registerUser = asyncHandler(async (req, res) => {
-    const { email, name, password, isInstructor, isAdmin } = req.body;
+    const { name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, resume, description } = req.body;
 
     const userExist = await User.findOne({ email });
     if (userExist) {
@@ -21,17 +21,13 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error("User already exists");
     } else {
         const user = await User.create({
-            name,
-            email,
-            password,
-            isInstructor,
-            isAdmin,
+            name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, resume, description
         });
         // const userId = user._id;
 
         if (user) {
             const output = `
-      '<h2>Welcome to Full Stack Simplified 👻</h2>
+      '<h2>Welcome to XcitEducation! </h2>
     <p>You have registered successfully</p>
     <h3>Your Account Details:</h3>
     <ul>
@@ -42,7 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
     <p>Please save your account details for future references</p>
     <p></p>
     <p>Regards</p>
-    <p>Team Full Stack Simplified</p>
+    <p>Team XcitEducation</p>
   `;
             // create reusable transporter object using the default SMTP transport
             let transporter = nodemailer.createTransport({
@@ -63,7 +59,7 @@ const registerUser = asyncHandler(async (req, res) => {
             // send mail with defined transport object
             let mailOptions = {
                 // from: '"Nodemailer Testing" <raj.sanghavi1@svkmmumbai.onmicrosoft.com>', // sender address
-                from: "Team Full Stack Simplified",
+                from: "Team XcitEducation",
                 to: `${user.email}`, // list of receivers
                 subject: "Registration Successful ✔", // Subject line
                 // text: "Hello world?", // plain text body

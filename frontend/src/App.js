@@ -5,9 +5,11 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
-import StudentLog from "./Components/StudentLog";
-import CompanyLog from "./Components/CompanyLog";
-import Student from "./Components/Student";
+import Signup from "./Components/Signup";
+// import CompanyLog from "./Components/CompanyLog";
+import Questions from "./Components/Questions";
+import ParticularInternship from "./Components/ParticularInternship";
+// import Student from "./Components/Signup";
 import Employ from "./Components/Employ";
 import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
 import MyApplication from "./Components/MyApplicationTable";
@@ -33,13 +35,16 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/login/*" element={<Login />} />
-            <Route path="/register/Student" element={<Student />} />
-            <Route path="/register/Company" element={<Employ />} />
-            <Route path="/login/StudentLog" element={<StudentLog />} />
-            <Route path="/login/CompanyLog" element={<CompanyLog />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            {/* <Route path="/register/Student" element={<Student />} /> */}
+            {/* <Route path="/register/Company" element={<Employ />} /> */}
+            {/* <Route path="/login/StudentLog" element={<StudentLog />} /> */}
+            {/* <Route path="/login/CompanyLog" element={<CompanyLog />} /> */}
             <Route path="/login/MyApplication" element={<MyApplication />} />
             <Route path="/Internship" element={<Internship />} />
+            <Route path="/particularInternship" element={<ParticularInternship />} />
+            <Route path="/questions" element={<Questions />} />
             <Route
               path="/login/MyApplicationCard"
               element={<MyApplicationCard />}

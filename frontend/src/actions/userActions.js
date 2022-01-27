@@ -50,7 +50,7 @@ export const logout = () => (dispatch) => {
     });
 };
 
-export const register = (name, email, password) => async (dispatch) => {
+export const register = (name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, description, resume) => async (dispatch) => {
     try {
         dispatch({ type: USER_REGISTER_REQUEST });
 
@@ -58,9 +58,10 @@ export const register = (name, email, password) => async (dispatch) => {
         const config = { headers: { "Content-Type": "application/json" } };
         const { data } = await axios.post(
             "/user/userRegister",
-            { name, email, password },
+            { name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, description, resume },
             config
         );
+        console.log("resume : ", resume);
         dispatch({
             type: USER_REGISTER_SUCCESS,
             payload: data,

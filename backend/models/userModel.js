@@ -25,26 +25,43 @@ const userSchema = mongoose.Schema(
             required: true,
             default: false,
         },
+        resume: {
+            type: String,
+            default: "https://upload.wikimedia.org/wikipedia/commons/9/90/Resume_logo.jpeg"
+        },
         profilePicture: {
             type: String,
             // required: true,
             default:
                 "https://res.cloudinary.com/dizvyn9b5/image/upload/v1632241265/sjddbfkcij5tz8vokcmo.jpg",
         },
-        githubLink: {
+        github: {
             type: String,
             // required: true,
-            default: "",
         },
-        linkedInLink: {
+        linkedin: {
             type: String,
             // required: true,
-            default: "",
         },
-        mobileNumber: {
+        mobile: {
             type: Number,
             // required: true,
-            default: 0,
+        },
+        certificateOfIncorporation: {
+            type: String
+        },
+        pancard: {
+            type: String,
+
+        },
+        gst: {
+            type: String,
+
+        },
+        description: {
+            type: String,
+            required: true,
+            default: "Description",
         },
         domains: [
             {
@@ -53,11 +70,6 @@ const userSchema = mongoose.Schema(
                 },
             },
         ],
-        description: {
-            type: String,
-            required: true,
-            default: "Describe yourself",
-        },
     },
     {
         timestamps: true,

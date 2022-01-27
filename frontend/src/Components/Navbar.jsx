@@ -76,6 +76,12 @@ const Navbar = () => {
           <ListItemButton component={Link} to="/Employee/Internship">
             <ListItemText primary="Employee Internships"></ListItemText>
           </ListItemButton>
+          <ListItemButton component={Link} to="/particularInternship">
+            <ListItemText primary="Particular Internship"></ListItemText>
+          </ListItemButton>
+          <ListItemButton component={Link} to="/questions">
+            <ListItemText primary="Questions"></ListItemText>
+          </ListItemButton>
         </List>
       </Drawer>
       <AppBar position="static">
@@ -100,9 +106,10 @@ const Navbar = () => {
                 <h1 style={{ marginLeft: "5px" }}>{userInfo.data.name}</h1>
 
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   sx={{ mr: 2, ml: 2 }}
                   color="inherit"
+                  style={{ backgroundColor: "red" }}
                   endIcon={<LoginIcon fontSize="small" />}
                   onClick={handleLogout}
                 >
@@ -114,9 +121,11 @@ const Navbar = () => {
             ) : (
               <>
                 <Button
-                  variant="outlined"
+                  variant="contained"
+                  // color="warning"
                   sx={{ mr: 2 }}
                   color="inherit"
+                  style={{ backgroundColor: "#5996ff" }}
                   endIcon={<LoginIcon fontSize="small" />}
                   component={Link}
                   to="/login"
@@ -126,19 +135,24 @@ const Navbar = () => {
                 <PopupState variant="popover" popupId="demo-popup-menu">
                   {(popupState) => (
                     <>
-                      <Button
-                        variant="outlined"
-                        color="inherit"
-                        {...bindTrigger(popupState)}
-                        endIcon={<ArrowDropDownOutlinedIcon fontSize="small" />}
+                      <Link to="/signup" style={{ textDecoration: "none" }}><Button
+                        variant="contained"
+                        // color="success"
+                        // color="inherit"
+                        style={{ color: "white", backgroundColor: "#23b502" }}
+                      // {...bindTrigger(popupState)}
+                      // endIcon={<ArrowDropDownOutlinedIcon fontSize="small" />
+
+                      // }
                       >
                         Register
                       </Button>
-                      <Menu {...bindMenu(popupState)}>
+                      </Link>
+                      {/* <Menu {...bindMenu(popupState)}>
                         <MenuItem
                           onClick={popupState.close}
                           component={Link}
-                          to="/register/Student"
+                          to="/signup"
                         >
                           Student
                         </MenuItem>
@@ -156,7 +170,7 @@ const Navbar = () => {
                         >
                           My Application
                         </MenuItem>
-                      </Menu>
+                      </Menu> */}
                     </>
                   )}
                 </PopupState></>)}
