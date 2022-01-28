@@ -16,18 +16,18 @@ import {
     userLoginReducer,
     userRegisterReducer,
 } from "./reducers/userReducers";
-// import {
-//   oneCourseDetailsReducer,
-//   frontendCourseListReducer,
-//   backendCourseListReducer,
-//   designingCourseListReducer,
-//   databaseCourseListReducer,
-//   fullstackCourseListReducer,
-//   otherCourseListReducer,
-//   allUserCoursesReducer,
-//   allInstructorCoursesReducer,
-//   createCourseReducer,
-// } from "./reducers/courseReducer";
+import {
+    //   oneCourseDetailsReducer,
+    //   frontendCourseListReducer,
+    //   backendCourseListReducer,
+    //   designingCourseListReducer,
+    //   databaseCourseListReducer,
+    //   fullstackCourseListReducer,
+    //   otherCourseListReducer,
+    //   allUserCoursesReducer,
+    //   allInstructorCoursesReducer,
+    createInternshipReducer,
+} from "./reducers/internshipReducers";
 // import { createAssignmentReducer } from "./reducers/assignmentReducers";
 // import { adminReducer } from "./reducers/adminReducers";
 
@@ -68,7 +68,7 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     //   isEnrolledInCourse: isUserEnrolledReducer,
     //   assignment: createAssignmentReducer,
-    //   createCourse: createCourseReducer,
+    createInternship: createInternshipReducer,
     //   allUserCourses: allUserCoursesReducer,
     //   allInstructorCourse: allInstructorCoursesReducer,
     //   courseDetails: oneCourseDetailsReducer,

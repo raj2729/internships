@@ -11,10 +11,10 @@ import {
   Switch,
   Slider,
   Paper,
-  Link,
   Autocomplete,
 } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom"
 // import { NavLink } from "react-router-dom";
 // import MyApplicationCard from "./MyApplicationCard";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -268,13 +268,14 @@ const Internship = () => {
                   >
                     Internship
                   </Typography>
-                  <Typography
+                  <Link to="/particularInternship"><Typography
                     variant="subtitle1"
                     color="Primary"
-                    component={Link}
+                  // component={Link}
+                  // to="/particularInternship"
                   >
                     View Offer
-                  </Typography>
+                  </Typography></Link>
                 </Box>
               </CardContent>
             </Box>
@@ -400,13 +401,14 @@ const Internship = () => {
                   >
                     Internship
                   </Typography>
-                  <Typography
+                  <Link to="/particularInternship"><Typography
                     variant="subtitle1"
                     color="Primary"
-                    component={Link}
+                  // component={Link}
+                  // to="/particularInternship"
                   >
                     View Offer
-                  </Typography>
+                  </Typography></Link>
                 </Box>
               </CardContent>
             </Box>
@@ -532,13 +534,14 @@ const Internship = () => {
                   >
                     Internship
                   </Typography>
-                  <Typography
+                  <Link to="/particularInternship"><Typography
                     variant="subtitle1"
                     color="Primary"
-                    component={Link}
+                  // component={Link}
+                  // to="/particularInternship"
                   >
                     View Offer
-                  </Typography>
+                  </Typography></Link>
                 </Box>
               </CardContent>
             </Box>

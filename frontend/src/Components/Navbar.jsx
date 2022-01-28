@@ -105,6 +105,18 @@ const Navbar = () => {
                 <p style={{ marginTop: "10px" }}> Welcome, </p>
                 <h1 style={{ marginLeft: "5px" }}>{userInfo.data.name}</h1>
 
+                {userInfo.data.isEmployer == true ? (
+                  <Button
+                    variant="contained"
+                    sx={{ mr: 2, ml: 2 }}
+                    color="inherit"
+                    style={{ backgroundColor: "#5996ff" }}
+                    component={Link}
+                    to="/createInternship"
+                  >
+                    Post Internship
+                  </Button>
+                ) : ""}
                 <Button
                   variant="contained"
                   sx={{ mr: 2, ml: 2 }}

@@ -15,6 +15,9 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userActions";
 import { Routes, Route } from "react-router-dom";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
 
 function Login() {
   const [user, setUser] = useState({
@@ -26,12 +29,18 @@ function Login() {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const [tabValue, setTabValue] = useState("student");
 
-  useEffect((e) => {
-    // e.preventDefault()
-    // window.location.reload(true);
-    console.log("Login page");
-  });
+  const handleTabChange = (event, newValue) => {
+    setTabValue(newValue);
+    console.log(newValue);
+
+  };
+  // useEffect((e) => {
+  //   // e.preventDefault()
+  //   // window.location.reload(true);
+  //   console.log("Login page");
+  // });
 
   useEffect(() => {
     if (userInfo) {
@@ -74,14 +83,20 @@ function Login() {
     <>
       <Grid>
         <Paper className="paper" elevation={10} style={paperStyle}>
-          <div className="close">
+          <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+            <Tabs value={tabValue} onChange={handleTabChange} centered>
+              <Tab value="student" label="Student" />
+              <Tab value="employer" label="Employer" />
+            </Tabs>
+          </Box>
+          {/* <div className="close">
             <Button>
               <CloseIcon />
             </Button>
-          </div>
+          </div> */}
           <Grid>
             <div className="container">
-              <div className="user-menu">
+              {/* <div className="user-menu">
                 <div id="student">
                   <Link className="u-line" to="/login/StudentLog">
                     Student
@@ -92,22 +107,27 @@ function Login() {
                     Employer/T&P
                   </Link>
                 </div>
-              </div>
-              <a className="g-login" to="www.google.com">
-                <div id="g-login">
-                  <div className="g-img">
-                    <GoogleIcon />
+              </div> */}
+              {tabValue == "student" ? (
+                <>
+                  <a className="g-login" to="www.google.com">
+                    <div id="g-login">
+                      <div className="g-img">
+                        <GoogleIcon />
+                      </div>
+                      <div className="g-content">Login with Google</div>
+                    </div>
+                  </a>
+                  <div className="seprate">
+                    <div className="text">
+                      <p>OR</p>
+                    </div>
+                    <div className="border"></div>
                   </div>
-                  <div className="g-content">Login with Google</div>
-                </div>
-              </a>
-              <div className="seprate">
-                <div className="text">
-                  <p>OR</p>
-                </div>
-                <div className="border"></div>
-              </div>
-              <form noValidate onSubmit={submitHandler}>
+                </>
+              ) : ""}
+
+              <form style={{ marginTop: "10px" }} noValidate onSubmit={submitHandler}>
                 <Grid>
                   <TextField
                     onChange={handleChange}
@@ -143,9 +163,7 @@ function Login() {
               </form>
               <Grid>
                 <Typography style={font}>
-                  New to Internshala? Register(
-                  <Link to="/register/StudentReg">Student</Link>/
-                  <Link to="/register/CompanyReg">Company</Link>)
+                  New to Internshala? <Link to="/signup">Register</Link>
                 </Typography>
               </Grid>
             </div>

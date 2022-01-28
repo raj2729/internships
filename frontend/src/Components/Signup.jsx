@@ -55,7 +55,7 @@ function Student() {
     //   //dispatch
     //   dispatch(register(name, email, password));
     // }
-    dispatch(register(user.name, user.email, user.password, user.linkedin, user.isEmployer, user.certificateOfIncorporation, user.pancard, user.gst, user.mobile, user.github, user.description, user.resume));
+    dispatch(register(user.name, user.email, user.password, user.linkedin, user.isEmployer, user.certificateOfIncorporation, user.pancard, user.gst, user.mobile, user.github, user.description, user.resume, user.companyLogo));
     
   };
   const [user, setUser] = useState({
@@ -71,7 +71,8 @@ function Student() {
     github:"",
     resume:"",
     description:"",
-    someData:""
+    someData:"",
+    company:""
   });
   const registerUser = ()=>{
     console.log(user);
@@ -157,7 +158,7 @@ function Student() {
         <Grid item xs={12} md={12} lg={6}>
 
           <FormLabel component="legend">Role</FormLabel>
-          <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+          <RadioGroup defaultValue="student" row aria-label="gender" name="row-radio-buttons-group">
             <FormControlLabel value="student" onClick={()=>{setUser({...user, isEmployer:false}); console.log(user);}} control={<Radio />} label="Student" />
             <FormControlLabel value="employer" onClick={()=>{setUser({...user, isEmployer:true}); console.log(user);}} control={<Radio />} label="Employer" />
           </RadioGroup>
@@ -195,6 +196,16 @@ function Student() {
         ></TextField> */}
           </>
           ):(<>
+            <TextField
+            value={user.companyLogo}
+            onChange={handleChange}
+            label="Company Logo"
+            sx={{ mt: 2 }}
+            placeholder="Company Logo"
+            type="text"
+            name="companyLogo"
+            fullWidth
+          ></TextField>
             <TextField
             value={user.certificateOfIncorporation}
             onChange={handleChange}

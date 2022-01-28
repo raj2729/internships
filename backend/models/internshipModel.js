@@ -2,12 +2,18 @@ const mongoose = require("mongoose");
 
 const InternshipSchema = mongoose.Schema(
     {
-        EmployerId: {
+
+
+        employerId: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: "User",
         },
         title: {
+            type: String,
+            required: true,
+        },
+        type: {
             type: String,
             required: true,
         },
@@ -21,13 +27,21 @@ const InternshipSchema = mongoose.Schema(
             type: String,
             required: true,
         },
+        isPartTime: {
+            type: Boolean,
+            required: true
+        },
+        isPPO: {
+            type: Boolean,
+            required: true
+        },
         location: {
             type: String,
             required: true,
             default: "Work from Home"
         },
         startsAt: {
-            type: Date,
+            type: String,
             default: "Immediately"
         },
         duration: {
@@ -39,9 +53,10 @@ const InternshipSchema = mongoose.Schema(
             required: true,
             default: 5000,
         },
-        lastDate: {
-            type: Date
-            // default: Date.now
+        lastDateToApply: {
+            type: String,
+            required: true,
+            default: Date.now
         },
         aboutCompany: {
             type: String,
@@ -50,6 +65,10 @@ const InternshipSchema = mongoose.Schema(
         aboutInternship: {
             type: String,
             required: true,
+        },
+        noOfOpenings: {
+            type: Number,
+            required: true
         },
         skillsRequired: [
             {
@@ -66,6 +85,15 @@ const InternshipSchema = mongoose.Schema(
                     type: String,
                 },
             },
+        ],
+        questions: [
+            {
+                question: {
+                    type: String,
+                },
+                default: ["Why should we hire you?", "Will you be able to start immediately for the duration mentioned?"]
+            },
+
         ],
 
     },

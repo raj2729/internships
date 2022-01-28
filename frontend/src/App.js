@@ -18,6 +18,7 @@ import Internship from "./Components/Internship";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Employee_dash from "./Components/Employee_dash";
 import Employee_intern_dash from "./Components/Employee_intern_dash";
+import CreateInternship from "./Components/CreateInternship";
 
 
 const theme = createTheme({
@@ -45,6 +46,7 @@ function App() {
             <Route path="/Internship" element={<Internship />} />
             <Route path="/particularInternship" element={<ParticularInternship />} />
             <Route path="/questions" element={<Questions />} />
+            <Route path="/createInternship" element={<CreateInternship />} />
             <Route
               path="/login/MyApplicationCard"
               element={<MyApplicationCard />}
