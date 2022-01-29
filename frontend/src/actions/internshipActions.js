@@ -263,6 +263,7 @@ export const createInternship =
                     },
                     config
                 );
+
                 dispatch({
                     type: INTERNSHIP_CREATE_SUCCESS,
                     payload: data,

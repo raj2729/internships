@@ -83,7 +83,7 @@ function CreateInternship() {
         employerId: userInfo.data._id,
         title: "",
         type: "",
-        companyLogo: userInfo.data.companyLogo,
+        companyLogo: userInfo.data.profilePicture,
         companyName: userInfo.data.name,
         location: "",
         startsAt: "Immediately",

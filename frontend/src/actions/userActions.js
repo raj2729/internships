@@ -61,7 +61,8 @@ export const register = (name, email, password, linkedin, isEmployer, certificat
             { name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, description, resume, profilePicture },
             config
         );
-        console.log("resume : ", resume);
+        console.log("Data from action: ", data)
+        console.log("profilePicture : ", profilePicture);
         dispatch({
             type: USER_REGISTER_SUCCESS,
             payload: data,
