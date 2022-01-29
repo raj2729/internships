@@ -1,3 +1,300 @@
+// import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
+// import { Link, useNavigate } from "react-router-dom";
+// import React, { useEffect, useState } from "react";
+// import "./Student.css";
+// import GoogleIcon from "@mui/icons-material/Google";
+// import Radio from "@mui/material/Radio";
+// import RadioGroup from "@mui/material/RadioGroup";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import FormControl from "@mui/material/FormControl";
+// import FormLabel from "@mui/material/FormLabel";
+// import { useDispatch, useSelector } from "react-redux";
+// import { register } from "../actions/userActions";
+// import axios from "axios";
+// function Student() {
+//   const userRegister = useSelector((state) => state.userRegister);
+//   const { userRegisterInfo } = userRegister;
+//   const navigate = useNavigate();
+//   const dispatch = useDispatch();
+//   useEffect(() => {
+//     if (userRegisterInfo) {
+//       navigate("/login");
+//     }
+//   }, [userRegisterInfo, navigate]);
+//   const submitHandler = (e) => {
+//     e.preventDefault();
+
+//     dispatch(
+//       register(
+//         user.name,
+//         user.email,
+//         user.password,
+//         user.linkedin,
+//         user.isEmployer,
+//         user.certificateOfIncorporation,
+//         user.pancard,
+//         user.gst,
+//         user.mobile,
+//         user.github,
+//         user.description,
+//         user.resume,
+//         user.companyLogo
+//       )
+//     );
+//   };
+//   const [user, setUser] = useState({
+//     name: "",
+//     email: "",
+//     password: "",
+//     linkedin: "",
+//     isEmployer: false,
+//     certificateOfIncorporation: "",
+//     pancard: "",
+//     gst: "",
+//     mobile: "",
+//     github: "",
+//     resume: "",
+//     description: "",
+//     someData: "",
+//     company: "",
+//   });
+//   const uploadImage = () => {
+//     //console.log(files[0]);
+//     const formData = new FormData();
+//     formData.append("file", user);
+//     formData.append("upload_preset", "internship-project");
+//     // dj1fagvvt => this is cloud name
+//     axios
+//       .post("https://api.cloudinary.com/v1_1/dj1fagvvt/image/upload", formData)
+
+//       .then((formData) => {
+//         console.log(formData);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+//   const registerUser = () => {
+//     console.log(user);
+//     console.log("User register");
+//   };
+//   let name, value;
+//   const handleChange = (e) => {
+//     console.log(user);
+//     name = e.target.name;
+//     value = e.target.value;
+//     setUser({ ...user, [name]: value });
+//   };
+//   const paperStyle = {
+//     padding: 20,
+//     height: "80%",
+//     width: "80%",
+//     margin: "20px auto",
+//   };
+//   const btstyle = { margin: "10px 0" };
+//   const Textstyle = { margin: "0 4px" };
+//   const font = { fontSize: 17 };
+//   return (
+//     <Grid>
+//       <Paper className="paper" elevation={10} style={paperStyle}>
+//         <h1 style={{ textAlign: "center" }}>
+//           {user.isEmployer == false ? "Student" : "Employer"} Registration
+//         </h1>
+//         <br />
+//         <form noValidate onSubmit={submitHandler}>
+//           <Grid container>
+//             <Grid item xs={12} md={12} lg={6} pr={4}>
+//               <TextField
+//                 value={user.name}
+//                 onChange={handleChange}
+//                 label="Name"
+//                 name="name"
+//                 sx={{ mb: 2 }}
+//                 placeholder="Name"
+//                 fullWidth
+//                 required
+//               ></TextField>
+//               <TextField
+//                 value={user.email}
+//                 onChange={handleChange}
+//                 label="Email"
+//                 name="email"
+//                 placeholder="@example.com"
+//                 fullWidth
+//                 required
+//               ></TextField>
+//               <TextField
+//                 value={user.password}
+//                 onChange={handleChange}
+//                 label="Password"
+//                 sx={{ mt: 2 }}
+//                 placeholder="Enter Password"
+//                 type="password"
+//                 name="password"
+//                 fullWidth
+//                 required
+//               ></TextField>
+//               <TextField
+//                 value={user.linkedin}
+//                 onChange={handleChange}
+//                 label="Linkedin Profile"
+//                 sx={{ mt: 2 }}
+//                 placeholder="Linkedin Profile"
+//                 type="text"
+//                 name="linkedin"
+//                 fullWidth
+//               ></TextField>
+//               <TextField
+//                 value={user.mobile}
+//                 onChange={handleChange}
+//                 label="Mobile Number"
+//                 sx={{ mt: 2 }}
+//                 placeholder="Mobile Number"
+//                 type="number"
+//                 name="mobile"
+//                 fullWidth
+//               ></TextField>
+//             </Grid>
+//             <Grid item xs={12} md={12} lg={6}>
+//               <FormLabel component="legend">Role</FormLabel>
+//               <RadioGroup
+//                 defaultValue="student"
+//                 row
+//                 aria-label="gender"
+//                 name="row-radio-buttons-group"
+//               >
+//                 <FormControlLabel
+//                   value="student"
+//                   onClick={() => {
+//                     setUser({ ...user, isEmployer: false });
+//                     console.log(user);
+//                   }}
+//                   control={<Radio />}
+//                   label="Student"
+//                 />
+//                 <FormControlLabel
+//                   value="employer"
+//                   onClick={() => {
+//                     setUser({ ...user, isEmployer: true });
+//                     console.log(user);
+//                   }}
+//                   control={<Radio />}
+//                   label="Employer"
+//                 />
+//               </RadioGroup>
+//               {user.isEmployer == false ? (
+//                 <>
+//                   <TextField
+//                     value={user.github}
+//                     onChange={handleChange}
+//                     label="GithubLink"
+//                     sx={{ mt: 2 }}
+//                     placeholder="Github Link"
+//                     type="text"
+//                     name="github"
+//                     fullWidth
+//                   ></TextField>
+//                   <TextField
+//                     value={user.resume}
+//                     onChange={handleChange}
+//                     label="Resume Drive Link"
+//                     sx={{ mt: 2 }}
+//                     placeholder="Resume Drive Link"
+//                     type="text"
+//                     name="resume"
+//                     fullWidth
+//                   ></TextField>
+//                   {/* <TextField
+//           value={user.description}
+//           onChange={handleChange}
+//           label="Description"
+//           sx={{ mt: 2 }}
+//           placeholder="Description"
+//           type="text"
+//           name="description"
+//           fullWidth
+//         ></TextField> */}
+//                 </>
+//               ) : (
+//                 <>
+//                   <TextField
+//                     value={user.companyLogo}
+//                     onChange={(e) => setUser(e.target.files[0])}
+//                     //label="Company Logo"
+//                     sx={{ mt: 2 }}
+//                     placeholder="Company Logo"
+//                     type="file"
+//                     name="companyLogo"
+//                     fullWidth
+//                   ></TextField>
+
+//                   <TextField
+//                     value={user.certificateOfIncorporation}
+//                     onChange={(e) => setUser(e.target.files[0])}
+//                     //label="Certificate Of Incorporation"
+//                     sx={{ mt: 2 }}
+//                     placeholder="Certificate of Incorporation"
+//                     type="file"
+//                     name="certificateOfIncorporation"
+//                     fullWidth
+//                   ></TextField>
+
+//                   {/* <Button variant="contained" component="label">
+//                     Upload File
+//                     <input type="file" hidden />
+//                   </Button> */}
+
+//                   <TextField
+//                     value={user.pancard}
+//                     onChange={handleChange}
+//                     label="Pan Card Number"
+//                     sx={{ mt: 2 }}
+//                     placeholder="Pan Card"
+//                     type="text"
+//                     name="pancard"
+//                     fullWidth
+//                   ></TextField>
+
+//                   <TextField
+//                     value={user.gst}
+//                     onChange={handleChange}
+//                     label="GST Number"
+//                     sx={{ mt: 2 }}
+//                     placeholder="GST Number of your Company"
+//                     type="text"
+//                     name="gst"
+//                     fullWidth
+//                   ></TextField>
+//                 </>
+//               )}
+//               <TextField
+//                 value={user.description}
+//                 onChange={handleChange}
+//                 label="Description"
+//                 sx={{ mt: 2 }}
+//                 placeholder="Description"
+//                 type="text"
+//                 name="description"
+//                 fullWidth
+//               ></TextField>
+//             </Grid>
+//           </Grid>
+//           <Button
+//             type="submit"
+//             onClick={(registerUser, uploadImage)}
+//             color="primary"
+//             variant="contained"
+//             style={{ marginLeft: "40%", marginTop: "20px" }}
+//           >
+//             Sign Up
+//           </Button>
+//         </form>
+//       </Paper>
+//     </Grid>
+//   );
+// }
+
+// export default Student;
 import {
   Grid,
   Paper,
@@ -17,7 +314,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userActions";
-
+import FileBase from 'react-file-base64';
 function Student() {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
@@ -55,7 +352,7 @@ function Student() {
     //   //dispatch
     //   dispatch(register(name, email, password));
     // }
-    dispatch(register(user.name, user.email, user.password, user.linkedin, user.isEmployer, user.certificateOfIncorporation, user.pancard, user.gst, user.mobile, user.github, user.description, user.resume, user.companyLogo));
+    dispatch(register(user.name, user.email, user.password, user.linkedin, user.isEmployer, user.certificateOfIncorporation, user.pancard, user.gst, user.mobile, user.github, user.description, user.resume, user.profilePicture));
     
   };
   const [user, setUser] = useState({
@@ -72,7 +369,7 @@ function Student() {
     resume:"",
     description:"",
     someData:"",
-    company:""
+    profilePicture:""
   });
   const registerUser = ()=>{
     console.log(user);
@@ -167,9 +464,9 @@ function Student() {
            <TextField
             value={user.github}
             onChange={handleChange}
-            label="GithubLink"
+            label="Github Link (Optional)"
             sx={{ mt: 2 }}
-            placeholder="Github Link"
+            placeholder="Github Link (Optional)"
             type="text"
             name="github"
             fullWidth
@@ -196,7 +493,7 @@ function Student() {
         ></TextField> */}
           </>
           ):(<>
-            <TextField
+            {/* <TextField
             value={user.companyLogo}
             onChange={handleChange}
             label="Company Logo"
@@ -205,17 +502,16 @@ function Student() {
             type="text"
             name="companyLogo"
             fullWidth
-          ></TextField>
-            <TextField
-            value={user.certificateOfIncorporation}
-            onChange={handleChange}
-            label="Certificate Of Incorporation"
-            sx={{ mt: 2 }}
-            placeholder="Certificate of Incorporation"
-            type="text"
-            name="certificateOfIncorporation"
-            fullWidth
-          ></TextField>
+          ></TextField> */}
+          {/* <br /> */}
+          <p>Company Logo</p>
+          <div label="Company Logo">
+          <FileBase type="file" multiple={false} onDone={({ base64 }) => setUser({ ...user, profilePicture: base64 })} />
+          </div>
+          <br />
+          <p>Certificate of Incorporation</p>
+            <div
+          ><FileBase type="file" multiple={false} onDone={({ base64 }) => setUser({ ...user, certificateOfIncorporation: base64 })} /></div>
            <TextField
             value={user.pancard}
             onChange={handleChange}

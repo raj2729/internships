@@ -2,24 +2,27 @@ import {
     ONE_INTERNSHIP_DETAILS_REQUEST,
     ONE_INTERNSHIP_DETAILS_SUCCESS,
     ONE_INTERNSHIP_DETAILS_FAILS,
+    ALL_INTERNSHIPS__LIST_REQUEST,
+    ALL_INTERNSHIPS__LIST_SUCCESS,
+    ALL_INTERNSHIPS__LIST_FAILS,
     ALL_USER_INTERNSHIPS_REQUEST,
     ALL_USER_INTERNSHIPS_SUCCESS,
     ALL_USER_INTERNSHIPS_FAILS,
-    FRONTEND_INTERNSHIPS__LIST_REQUEST,
-    FRONTEND_INTERNSHIPS__LIST_SUCCESS,
-    FRONTEND_INTERNSHIPS__LIST_FAILS,
-    BACKEND_INTERNSHIPS__LIST_REQUEST,
-    BACKEND_INTERNSHIPS__LIST_SUCCESS,
-    BACKEND_INTERNSHIPS__LIST_FAILS,
+    WEBDEV_INTERNSHIPS__LIST_REQUEST,
+    WEBDEV_INTERNSHIPS__LIST_SUCCESS,
+    WEBDEV_INTERNSHIPS__LIST_FAILS,
     DESIGNING_INTERNSHIPS__LIST_REQUEST,
     DESIGNING_INTERNSHIPS__LIST_SUCCESS,
     DESIGNING_INTERNSHIPS__LIST_FAILS,
-    DATABASE_INTERNSHIPS__LIST_REQUEST,
-    DATABASE_INTERNSHIPS__LIST_SUCCESS,
-    DATABASE_INTERNSHIPS__LIST_FAILS,
-    FULLSTACK_INTERNSHIPS__LIST_REQUEST,
-    FULLSTACK_INTERNSHIPS__LIST_SUCCESS,
-    FULLSTACK_INTERNSHIPS__LIST_FAILS,
+    CONTENTWRITING_INTERNSHIPS__LIST_REQUEST,
+    CONTENTWRITING_INTERNSHIPS__LIST_SUCCESS,
+    CONTENTWRITING_INTERNSHIPS__LIST_FAILS,
+    DIGITALMARKETING_INTERNSHIPS__LIST_REQUEST,
+    DIGITALMARKETING_INTERNSHIPS__LIST_SUCCESS,
+    DIGITALMARKETING_INTERNSHIPS__LIST_FAILS,
+    DATASCIENCE_INTERNSHIPS__LIST_REQUEST,
+    DATASCIENCE_INTERNSHIPS__LIST_SUCCESS,
+    DATASCIENCE_INTERNSHIPS__LIST_FAILS,
     OTHER_INTERNSHIPS_LIST_REQUEST,
     OTHER_INTERNSHIPS_LIST_SUCCESS,
     OTHER_INTERNSHIPS_LIST_FAILS,
@@ -32,7 +35,7 @@ import {
 } from "../constants/internshipConstants";
 
 // Partiicular INTERNSHIP details
-export const oneINTERNSHIPDetailsReducer = (
+export const oneInternshipDetailsReducer = (
     state = { INTERNSHIP: { reviews: [] } },
     action
 ) => {
@@ -48,7 +51,7 @@ export const oneINTERNSHIPDetailsReducer = (
     }
 };
 
-export const allUserINTERNSHIPsReducer = (state = { internships: [] }, action) => {
+export const allUserInternshipsReducer = (state = { internships: [] }, action) => {
     switch (action.type) {
         case ALL_USER_INTERNSHIPS_REQUEST:
             return { ...state, loading: true, internships: [] };
@@ -77,32 +80,32 @@ export const allEmployerInternshipsReducer = (
     }
 };
 
-export const frontendInternshipListReducer = (
-    state = { frontendInternshipList: [] },
+export const allInternshipsListReducer = (
+    state = { allInternshipList: [] },
     action
 ) => {
     switch (action.type) {
-        case FRONTEND_INTERNSHIPS__LIST_REQUEST:
-            return { ...state, loading: true, frontendInternshipList: [] };
-        case FRONTEND_INTERNSHIPS__LIST_SUCCESS:
-            return { loading: false, frontendInternshipList: action.payload };
-        case FRONTEND_INTERNSHIPS__LIST_FAILS:
+        case ALL_INTERNSHIPS__LIST_REQUEST:
+            return { ...state, loading: true, allInternshipsList: [] };
+        case ALL_INTERNSHIPS__LIST_SUCCESS:
+            return { loading: false, allInternshipsList: action.payload };
+        case ALL_INTERNSHIPS__LIST_FAILS:
             return { loading: false, error: action.payload };
         default:
             return state;
     }
 };
 
-export const backendInternshipListReducer = (
-    state = { backendINTERNSHIPList: [] },
+export const webdevInternshipListReducer = (
+    state = { webdevInternshipList: [] },
     action
 ) => {
     switch (action.type) {
-        case BACKEND_INTERNSHIPS__LIST_REQUEST:
-            return { ...state, loading: true, backendInternshipList: [] };
-        case BACKEND_INTERNSHIPS__LIST_SUCCESS:
-            return { loading: false, backendInternshipList: action.payload };
-        case BACKEND_INTERNSHIPS__LIST_FAILS:
+        case WEBDEV_INTERNSHIPS__LIST_REQUEST:
+            return { ...state, loading: true, webdevInternshipList: [] };
+        case WEBDEV_INTERNSHIPS__LIST_SUCCESS:
+            return { loading: false, WEBDEVInternshipList: action.payload };
+        case WEBDEV_INTERNSHIPS__LIST_FAILS:
             return { loading: false, error: action.payload };
         default:
             return state;
@@ -110,7 +113,7 @@ export const backendInternshipListReducer = (
 };
 
 export const designingInternshipListReducer = (
-    state = { designingINTERNSHIPList: [] },
+    state = { designingInternshipList: [] },
     action
 ) => {
     switch (action.type) {
@@ -125,32 +128,48 @@ export const designingInternshipListReducer = (
     }
 };
 
-export const databaseInternshipListReducer = (
-    state = { databaseINTERNSHIPList: [] },
+export const contentWritingInternshipListReducer = (
+    state = { contentWritingInternshipList: [] },
     action
 ) => {
     switch (action.type) {
-        case DATABASE_INTERNSHIPS__LIST_REQUEST:
-            return { ...state, loading: true, databaseInternshipList: [] };
-        case DATABASE_INTERNSHIPS__LIST_SUCCESS:
-            return { loading: false, databaseInternshipList: action.payload };
-        case DATABASE_INTERNSHIPS__LIST_FAILS:
+        case CONTENTWRITING_INTERNSHIPS__LIST_REQUEST:
+            return { ...state, loading: true, contentWritingInternshipList: [] };
+        case CONTENTWRITING_INTERNSHIPS__LIST_SUCCESS:
+            return { loading: false, contentWritingInternshipList: action.payload };
+        case CONTENTWRITING_INTERNSHIPS__LIST_FAILS:
             return { loading: false, error: action.payload };
         default:
             return state;
     }
 };
 
-export const fullstackInternshipListReducer = (
-    state = { fullstackInternshipList: [] },
+export const digitalMarketingInternshipListReducer = (
+    state = { digitalMarketingInternshipList: [] },
     action
 ) => {
     switch (action.type) {
-        case FULLSTACK_INTERNSHIPS__LIST_REQUEST:
-            return { ...state, loading: true, fullstackInternshipList: [] };
-        case FULLSTACK_INTERNSHIPS__LIST_SUCCESS:
-            return { loading: false, fullstackInternshipList: action.payload };
-        case FULLSTACK_INTERNSHIPS__LIST_FAILS:
+        case DIGITALMARKETING_INTERNSHIPS__LIST_REQUEST:
+            return { ...state, loading: true, digitalMarketingInternshipList: [] };
+        case DIGITALMARKETING_INTERNSHIPS__LIST_SUCCESS:
+            return { loading: false, digitalMarketingInternshipList: action.payload };
+        case DIGITALMARKETING_INTERNSHIPS__LIST_FAILS:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const dataScienceInternshipListReducer = (
+    state = { dataScienceInternshipList: [] },
+    action
+) => {
+    switch (action.type) {
+        case DATASCIENCE_INTERNSHIPS__LIST_REQUEST:
+            return { ...state, loading: true, dataScienceInternshipList: [] };
+        case DATASCIENCE_INTERNSHIPS__LIST_SUCCESS:
+            return { loading: false, dataScienceInternshipList: action.payload };
+        case DATASCIENCE_INTERNSHIPS__LIST_FAILS:
             return { loading: false, error: action.payload };
         default:
             return state;

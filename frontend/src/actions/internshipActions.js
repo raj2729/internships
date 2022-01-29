@@ -1,26 +1,29 @@
 import axios from "axios";
 import {
+    ALL_INTERNSHIPS__LIST_REQUEST,
+    ALL_INTERNSHIPS__LIST_SUCCESS,
+    ALL_INTERNSHIPS__LIST_FAILS,
     ONE_INTERNSHIP_DETAILS_REQUEST,
     ONE_INTERNSHIP_DETAILS_SUCCESS,
     ONE_INTERNSHIP_DETAILS_FAILS,
     ALL_USER_INTERNSHIPS_REQUEST,
     ALL_USER_INTERNSHIPS_SUCCESS,
     ALL_USER_INTERNSHIPS_FAILS,
-    FRONTEND_INTERNSHIPS__LIST_REQUEST,
-    FRONTEND_INTERNSHIPS__LIST_SUCCESS,
-    FRONTEND_INTERNSHIPS__LIST_FAILS,
-    BACKEND_INTERNSHIPS__LIST_SUCCESS,
-    BACKEND_INTERNSHIPS__LIST_FAILS,
-    BACKEND_INTERNSHIPS__LIST_REQUEST,
-    DESIGNING_INTERNSHIPS__LIST_REQUEST,
+    WEBDEV_INTERNSHIPS__LIST_REQUEST,
+    WEBDEV_INTERNSHIPS__LIST_SUCCESS,
+    WEBDEV_INTERNSHIPS__LIST_FAILS,
     DESIGNING_INTERNSHIPS__LIST_SUCCESS,
     DESIGNING_INTERNSHIPS__LIST_FAILS,
-    DATABASE_INTERNSHIPS__LIST_REQUEST,
-    DATABASE_INTERNSHIPS__LIST_SUCCESS,
-    DATABASE_INTERNSHIPS__LIST_FAILS,
-    FULLSTACK_INTERNSHIPS__LIST_REQUEST,
-    FULLSTACK_INTERNSHIPS__LIST_SUCCESS,
-    FULLSTACK_INTERNSHIPS__LIST_FAILS,
+    DESIGNING_INTERNSHIPS__LIST_REQUEST,
+    CONTENTWRITING_INTERNSHIPS__LIST_REQUEST,
+    CONTENTWRITING_INTERNSHIPS__LIST_SUCCESS,
+    CONTENTWRITING_INTERNSHIPS__LIST_FAILS,
+    DIGITALMARKETING_INTERNSHIPS__LIST_REQUEST,
+    DIGITALMARKETING_INTERNSHIPS__LIST_SUCCESS,
+    DIGITALMARKETING_INTERNSHIPS__LIST_FAILS,
+    DATASCIENCE_INTERNSHIPS__LIST_REQUEST,
+    DATASCIENCE_INTERNSHIPS__LIST_SUCCESS,
+    DATASCIENCE_INTERNSHIPS__LIST_FAILS,
     OTHER_INTERNSHIPS_LIST_SUCCESS,
     OTHER_INTERNSHIPS_LIST_FAILS,
     OTHER_INTERNSHIPS_LIST_REQUEST,
@@ -43,6 +46,28 @@ export const oneInternshipDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ONE_INTERNSHIP_DETAILS_FAILS,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+//GET ALL INTERNSHIPS
+export const allInternshipsListAction = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: ALL_INTERNSHIPS__LIST_REQUEST,
+        });
+        const { data } = await axios.get("/internship/allInternships");
+        dispatch({
+            type: ALL_INTERNSHIPS__LIST_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: ALL_INTERNSHIPS__LIST_FAILS,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
@@ -94,40 +119,19 @@ export const allEmployerInternshipsAction = (id) => async (dispatch) => {
     }
 };
 
-export const frontendInternshipListAction = () => async (dispatch) => {
+export const webdevInternshipListAction = () => async (dispatch) => {
     try {
         dispatch({
-            type: FRONTEND_INTERNSHIPS__LIST_REQUEST,
+            type: WEBDEV_INTERNSHIPS__LIST_REQUEST,
         });
-        const { data } = await axios.get("/internship/allFrontendInternships");
+        const { data } = await axios.get("/internship/allWebdevInternships");
         dispatch({
-            type: FRONTEND_INTERNSHIPS__LIST_SUCCESS,
+            type: WEBDEV_INTERNSHIPS__LIST_SUCCESS,
             payload: data,
         });
     } catch (error) {
         dispatch({
-            type: FRONTEND_INTERNSHIPS__LIST_FAILS,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        });
-    }
-};
-
-export const backendInternshipListAction = () => async (dispatch) => {
-    try {
-        dispatch({
-            type: BACKEND_INTERNSHIPS__LIST_REQUEST,
-        });
-        const { data } = await axios.get("/internship/allBackendInternships");
-        dispatch({
-            type: BACKEND_INTERNSHIPS__LIST_SUCCESS,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: BACKEND_INTERNSHIPS__LIST_FAILS,
+            type: WEBDEV_INTERNSHIPS__LIST_FAILS,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
@@ -157,19 +161,19 @@ export const designingInternshipListAction = () => async (dispatch) => {
     }
 };
 
-export const databaseInternshipListAction = () => async (dispatch) => {
+export const contentWritingInternshipListAction = () => async (dispatch) => {
     try {
         dispatch({
-            type: DATABASE_INTERNSHIPS__LIST_REQUEST,
+            type: CONTENTWRITING_INTERNSHIPS__LIST_REQUEST,
         });
-        const { data } = await axios.get("/internship/allDatabaseInternships");
+        const { data } = await axios.get("/internship/allContentWritingInternships");
         dispatch({
-            type: DATABASE_INTERNSHIPS__LIST_SUCCESS,
+            type: CONTENTWRITING_INTERNSHIPS__LIST_SUCCESS,
             payload: data,
         });
     } catch (error) {
         dispatch({
-            type: DATABASE_INTERNSHIPS__LIST_FAILS,
+            type: CONTENTWRITING_INTERNSHIPS__LIST_FAILS,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
@@ -178,19 +182,40 @@ export const databaseInternshipListAction = () => async (dispatch) => {
     }
 };
 
-export const fullstackInternshipListAction = () => async (dispatch) => {
+export const digitalMarketingInternshipListAction = () => async (dispatch) => {
     try {
         dispatch({
-            type: FULLSTACK_INTERNSHIPS__LIST_REQUEST,
+            type: DIGITALMARKETING_INTERNSHIPS__LIST_REQUEST,
         });
-        const { data } = await axios.get("/internship/allFullstackInternships");
+        const { data } = await axios.get("/internship/allDigitalMarketingInternships");
         dispatch({
-            type: FULLSTACK_INTERNSHIPS__LIST_SUCCESS,
+            type: DIGITALMARKETING_INTERNSHIPS__LIST_SUCCESS,
             payload: data,
         });
     } catch (error) {
         dispatch({
-            type: FULLSTACK_INTERNSHIPS__LIST_FAILS,
+            type: DIGITALMARKETING_INTERNSHIPS__LIST_FAILS,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+export const dataScienceInternshipListAction = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: DATASCIENCE_INTERNSHIPS__LIST_REQUEST,
+        });
+        const { data } = await axios.get("/internship/allDataScienceInternships");
+        dispatch({
+            type: DATASCIENCE_INTERNSHIPS__LIST_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: DATASCIENCE_INTERNSHIPS__LIST_FAILS,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

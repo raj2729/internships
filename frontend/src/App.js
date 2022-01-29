@@ -14,7 +14,7 @@ import Employ from "./Components/Employ";
 import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
 import MyApplication from "./Components/MyApplicationTable";
 import MyApplicationCard from "./Components/MyApplicationCard";
-import Internship from "./Components/Internship";
+import AllInternships from "./Components/AllInternships";
 import { createTheme, ThemeProvider } from "@mui/material";
 import Employee_dash from "./Components/Employee_dash";
 import Employee_intern_dash from "./Components/Employee_intern_dash";
@@ -43,7 +43,7 @@ function App() {
             {/* <Route path="/login/StudentLog" element={<StudentLog />} /> */}
             {/* <Route path="/login/CompanyLog" element={<CompanyLog />} /> */}
             <Route path="/login/MyApplication" element={<MyApplication />} />
-            <Route path="/Internship" element={<Internship />} />
+            <Route path="/allInternships" element={<AllInternships />} />
             <Route path="/particularInternship" element={<ParticularInternship />} />
             <Route path="/questions" element={<Questions />} />
             <Route path="/createInternship" element={<CreateInternship />} />

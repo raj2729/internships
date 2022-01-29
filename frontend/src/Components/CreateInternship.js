@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import TextField from "@mui/material/TextField";
+import Autocomplete from '@mui/material/Autocomplete';
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -42,11 +43,19 @@ function CreateInternship() {
     const dispatch = useDispatch();
     // const userLogin = useSelector((state) => state.userLogin);
     // const { userInfo } = userLogin;
+    const top100Films = [
+        { label: 'Mumbai' },
+        { label: 'Delhi' },
+        { label: 'Kolkata' },
+        { label: 'Kerela' },
+        { label: 'Madhya Pradesh' },
+        { label: 'Rajasthan' },
 
+    ];
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createInternship(form.employerId, form.title, form.type, form.companyLogo, form.companyName, form.location, form.startsAt, form.duration, form.stipend, form.lastDateToApply, form.aboutCompany, form.aboutInternship, form.noOfOpenings, form.skillsRequired, form.perks, form.questions, form.isPartTime, form.isPPO));
-        navigate("/internship")
+        navigate("/allInternships")
         //   e.preventDefault();
         //   setTitleError(false);
         //   settypeError(false);
@@ -156,9 +165,19 @@ function CreateInternship() {
                                 <Grid mt={2}>
                                     <Typography mb={1}>Location of Internship *</Typography>
                                     <FormControl sx={{ m: 1, minWidth: 80 }}>
-                                        <InputLabel sx={{}} id="demo-simple-select-autowidth-label">
+                                        {/* <InputLabel sx={{}} id="demo-simple-select-autowidth-label">
                                             Select Location
-                                        </InputLabel>
+                                        </InputLabel> */}
+                                        {/* <Autocomplete
+                                            disablePortal
+                                            id="combo-box-demo"
+                                            options={top100Films}
+                                            sx={{ width: 300 }}
+                                            renderInput={(params) => <TextField value={form.location}
+                                                name="location"
+                                                onChange={handleChange}
+                                                {...params} label="Location" />}
+                                        /> */}
                                         <Select
                                             labelId="demo-simple-select-autowidth-label"
                                             id="demo-simple-select-autowidth"

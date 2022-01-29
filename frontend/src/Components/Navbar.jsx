@@ -64,8 +64,8 @@ const Navbar = () => {
           <ListItemButton component={Link} to="/about">
             <ListItemText primary="About Us"></ListItemText>
           </ListItemButton>
-          <ListItemButton component={Link} to="/Internship">
-            <ListItemText primary="Internship"></ListItemText>
+          <ListItemButton component={Link} to="/allInternships">
+            <ListItemText primary="All Internships"></ListItemText>
           </ListItemButton>
           <ListItemButton component={Link} to="/login/MyApplicationCard">
             <ListItemText primary="My Application"></ListItemText>

@@ -165,6 +165,8 @@ const getAllInternships = asyncHandler(async (req, res) => {
     const Internships = await Internship.find({});
     if (Internships.length > 0) {
         res.status(200).json(Internships);
+        console.log("All internships found");
+        // console.log();
     } else {
         res.status(404).json({
             message: "No Internship found",
