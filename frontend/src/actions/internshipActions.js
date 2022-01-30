@@ -36,9 +36,10 @@ import {
 } from "../constants/internshipConstants";
 
 export const oneInternshipDetails = (id) => async (dispatch) => {
+    console.log("internship detail from action: ", id);
     try {
         dispatch({ type: ONE_INTERNSHIP_DETAILS_REQUEST });
-        const { data } = await axios.get(`/internship/oneinternship/${id}`);
+        const { data } = await axios.get(`/internship/oneInternship/${id}`);
         dispatch({
             type: ONE_INTERNSHIP_DETAILS_SUCCESS,
             payload: data,

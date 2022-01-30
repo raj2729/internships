@@ -95,7 +95,7 @@ const AllInternships = () => {
     dispatch(allInternshipsListAction());
     // console.log("Sencond");
   }, [dispatch, navigate]);
-  let internships = allInternshipsList
+  const internships = allInternshipsList
   // { title: "Frontend", data: [1, 2, 3] },
 
   // { title: "Backend Courses", data: backendCourseList },
@@ -229,7 +229,7 @@ const AllInternships = () => {
         </Box>
         <Box className="Main" sx={{ flexGrow: 1, flexDirection: "column" }}>
           {/* sssssssssssss */}
-          {internships.map((item) => (
+          {allInternshipsList.map((item) => (
             <Card
               key={item._id}
               variant="outlined"
@@ -358,7 +358,7 @@ const AllInternships = () => {
                     >
                       Internship
                     </Typography>
-                    <Link to="/particularInternship"><Typography
+                    <Link to={`/internship/${item._id}`}><Typography
                       variant="subtitle1"
                       color="Primary"
                     // component={Link}

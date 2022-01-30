@@ -89,7 +89,7 @@ const reducer = combineReducers({
     // otherInternshipListReducer,
     //   isEnrolledInCourse: isUserEnrolledReducer,
     //   assignment: createAssignmentReducer,
-    oneInternshipDetails: oneInternshipDetailsReducer,
+    internshipDetails: oneInternshipDetailsReducer,
     allUserInternships: allUserInternshipsReducer,
     allEmployerInternships: allEmployerInternshipsReducer,
     createInternship: createInternshipReducer,

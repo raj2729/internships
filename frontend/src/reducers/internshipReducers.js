@@ -35,16 +35,48 @@ import {
 } from "../constants/internshipConstants";
 
 // Partiicular INTERNSHIP details
+// export const oneInternshipDetailsReducer = (
+//     state = { internship: { reviews: [] } },
+//     action
+// ) => {
+//     switch (action.type) {
+//         case ONE_INTERNSHIP_DETAILS_REQUEST:
+//             return { ...state, loading: true };
+//         case ONE_INTERNSHIP_DETAILS_SUCCESS:
+//             return { loading: false, internship: action.payload };
+//         case ONE_INTERNSHIP_DETAILS_FAILS:
+//             return { loading: false, error: action.payload };
+//         default:
+//             return state;
+//     }
+// };
+
 export const oneInternshipDetailsReducer = (
-    state = { INTERNSHIP: { reviews: [] } },
+    state = { internshipDetails: [] },
     action
 ) => {
     switch (action.type) {
         case ONE_INTERNSHIP_DETAILS_REQUEST:
-            return { ...state, loading: true };
+            return { ...state, loading: true, internshipDetails: [] };
         case ONE_INTERNSHIP_DETAILS_SUCCESS:
-            return { loading: false, internship: action.payload };
+            return { loading: false, internshipDetails: action.payload };
         case ONE_INTERNSHIP_DETAILS_FAILS:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
+
+export const allInternshipsListReducer = (
+    state = { allInternshipList: [] },
+    action
+) => {
+    switch (action.type) {
+        case ALL_INTERNSHIPS__LIST_REQUEST:
+            return { ...state, loading: true, allInternshipsList: [] };
+        case ALL_INTERNSHIPS__LIST_SUCCESS:
+            return { loading: false, allInternshipsList: action.payload };
+        case ALL_INTERNSHIPS__LIST_FAILS:
             return { loading: false, error: action.payload };
         default:
             return state;
@@ -80,21 +112,7 @@ export const allEmployerInternshipsReducer = (
     }
 };
 
-export const allInternshipsListReducer = (
-    state = { allInternshipList: [] },
-    action
-) => {
-    switch (action.type) {
-        case ALL_INTERNSHIPS__LIST_REQUEST:
-            return { ...state, loading: true, allInternshipsList: [] };
-        case ALL_INTERNSHIPS__LIST_SUCCESS:
-            return { loading: false, allInternshipsList: action.payload };
-        case ALL_INTERNSHIPS__LIST_FAILS:
-            return { loading: false, error: action.payload };
-        default:
-            return state;
-    }
-};
+
 
 export const webdevInternshipListReducer = (
     state = { webdevInternshipList: [] },

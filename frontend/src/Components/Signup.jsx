@@ -213,8 +213,14 @@ function Signup() {
           </div>
           <br />
           <p>Certificate of Incorporation</p>
+
             <div
-          ><FileBase type="file" multiple={false} onDone={({ base64 }) => setUser({ ...user, certificateOfIncorporation: base64 })} /></div>
+          >
+          {/* <TextField> */}
+          <FileBase type="file" multiple={false} onDone={({ base64 }) => setUser({ ...user, certificateOfIncorporation: base64 })} />
+          {/* </TextField> */}
+          </div>
+          
            <TextField
             value={user.pancard}
             onChange={handleChange}

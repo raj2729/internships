@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     Box,
     Typography,
@@ -17,7 +17,33 @@ import Duration from "@mui/icons-material/AvTimer";
 import Stipend from "@mui/icons-material/Paid";
 import ApplyBy from "@mui/icons-material/AccessTimeFilled";
 import Applicants from "@mui/icons-material/PeopleOutline";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    oneInternshipDetails,
+    allUserInternshipActions,
+} from "../actions/internshipActions";
 const ParticularInternship = () => {
+    const dispatch = useDispatch();
+    // const [isEnrolled, setIsEnrolled] = useState(false);
+    //   const isEnrolledInCourse = useSelector((state) => state.isEnrolledInCourse);
+    //   const { loading: isEnrolledLoading, isEnrolled } = isEnrolledInCourse;
+    const internshipDetails = useSelector((state) => state.internshipDetails);
+    const { loading, error, internship } = internshipDetails;
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+    const allUserInternships = useSelector((state) => state.allUserInternships);
+    // const { loading: allInternshipsLoading, internships: allInternships } = internshipDetails;
+    // const [
+    //     isUserEnrolledInCourseFromAllCourses,
+    //     setIsUserEnrolledInCourseFromAllCourses,
+    // ] = useState(false);
+
+    // const bearerToken = localStorage.getItem("token");
+    useEffect(() => {
+        console.log("internshipDetails: ", internshipDetails);
+    }, []);
+
     return (
         <>
             <Grid ml={25} mr={25} mt={8}>

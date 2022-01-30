@@ -248,12 +248,14 @@ const getAllOtherInternships = asyncHandler(async (req, res) => {
 
 // Get details of Internship by ID
 const getInternshipById = asyncHandler(async (req, res) => {
-    const Internship = await Internship.findById(req.params.id);
-    if (Internship) {
+    const foundInternship = await Internship.findById(req.params.id);
+    if (foundInternship) {
+        // console.log("Particular internship details", Internship)
         res.status(200).json({
             success: true,
-            data: Internship,
+            data: foundInternship,
         });
+        console.log("Particular internship details", foundInternship)
     } else {
         res.status(404).json({
             success: false,
