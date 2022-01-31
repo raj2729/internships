@@ -55,7 +55,7 @@ function Signup() {
     //   //dispatch
     //   dispatch(register(name, email, password));
     // }
-    dispatch(register(user.name, user.email, user.password, user.linkedin, user.isEmployer, user.certificateOfIncorporation, user.pancard, user.gst, user.mobile, user.github, user.description, user.resume, user.profilePicture));
+    dispatch(register(user.name, user.email, user.password, user.linkedin, user.isEmployer, user.certificateOfIncorporation, user.pancard, user.gst, user.mobile, user.github, user.description, user.resume, user.profilePicture, user.education, user.location));
     
   };
   const [user, setUser] = useState({
@@ -71,8 +71,9 @@ function Signup() {
     github:"",
     resume:"",
     description:"",
-    someData:"",
-    profilePicture:""
+    profilePicture:"",
+    education:"Bachelor of Technology",
+    location:"Mumbai"
   });
   const registerUser = ()=>{
     console.log(user);
@@ -175,6 +176,49 @@ function Signup() {
             fullWidth
           ></TextField>
           <TextField
+            value={user.location}
+            onChange={handleChange}
+            label="Location"
+            sx={{ mt: 2 }}
+            placeholder="Location"
+            type="text"
+            name="location"
+            fullWidth
+          ></TextField>
+  <TextField
+            value={user.education}
+            onChange={handleChange}
+            label="Highest Education"
+            sx={{ mt: 2 }}
+            placeholder="Highest Education"
+            type="text"
+            name="education"
+            fullWidth
+          ></TextField>
+          
+          {/* <TextField
+            value={user.skills}
+            onChange={handleChange}
+            label="Skills"
+            sx={{ mt: 2 }}
+            placeholder="Skills"
+            type="text"
+            name="skills"
+            fullWidth
+          ></TextField>
+          <TextField
+            value={user.projects}
+            onChange={handleChange}
+            label="Projects"
+            sx={{ mt: 2 }}
+            placeholder="Projects"
+            type="text"
+            name="projects"
+            fullWidth
+          ></TextField> */}
+
+          
+          <TextField
             value={user.resume}
             onChange={handleChange}
             label="Resume Drive Link"
@@ -257,17 +301,19 @@ function Signup() {
         ></TextField>
         </Grid>
       </Grid>
+      <Grid display="flex" justifyContent="center">
        <Button
       type="submit"
       onClick={registerUser}
       color="primary"
       variant="contained"
-      style={{marginLeft:"40%", marginTop:"20px"}}
+      style={{ marginTop:"20px"}}
       
       
     >
       Sign Up
     </Button>
+    </Grid>
           </form>
 
       </Paper >

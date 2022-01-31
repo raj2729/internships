@@ -13,7 +13,7 @@ LIST OF CONTROLLERS
 
 // Register New user
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, resume, description, profilePicture } = req.body;
+    const { name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, resume, description, profilePicture, education, location } = req.body;
 
     const userExist = await User.findOne({ email });
     if (userExist) {
@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error("User already exists");
     } else {
         const user = await User.create({
-            name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, resume, description, profilePicture
+            name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, resume, description, profilePicture, education, location
         });
         // const userId = user._id;
 

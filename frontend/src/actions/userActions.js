@@ -50,7 +50,7 @@ export const logout = () => (dispatch) => {
     });
 };
 
-export const register = (name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, description, resume, profilePicture) => async (dispatch) => {
+export const register = (name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, description, resume, profilePicture, education, location) => async (dispatch) => {
     try {
         dispatch({ type: USER_REGISTER_REQUEST });
 
@@ -58,7 +58,7 @@ export const register = (name, email, password, linkedin, isEmployer, certificat
         const config = { headers: { "Content-Type": "application/json" } };
         const { data } = await axios.post(
             "/user/userRegister",
-            { name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, description, resume, profilePicture },
+            { name, email, password, linkedin, isEmployer, certificateOfIncorporation, pancard, gst, mobile, github, description, resume, profilePicture, education, location },
             config
         );
         console.log("Data from action: ", data)

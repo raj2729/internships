@@ -4,11 +4,11 @@ import {
     Typography,
     Grid,
     Container,
-    Link,
     Paper,
     Button,
     Divider,
 } from "@mui/material";
+import { Link } from "react-router-dom"
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
@@ -29,7 +29,7 @@ const ParticularInternship = () => {
     //   const { loading: isEnrolledLoading, isEnrolled } = isEnrolledInCourse;
     const internshipDetails = useSelector((state) => state.internshipDetails);
     const { loading, error, internship } = internshipDetails;
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
     const allUserInternships = useSelector((state) => state.allUserInternships);
@@ -42,6 +42,7 @@ const ParticularInternship = () => {
     // const bearerToken = localStorage.getItem("token");
     useEffect(() => {
         console.log("internshipDetails: ", internshipDetails);
+        console.log("userInfo : ", userInfo);
     }, []);
 
     return (
@@ -51,7 +52,7 @@ const ParticularInternship = () => {
                     <Typography>
                         <ArrowBackIosIcon />
                     </Typography>
-                    <Link href="#" sx={{ textDecoration: "none" }}>
+                    <Link to="#" sx={{ textDecoration: "none" }}>
                         Browse more internship
                     </Link>
                 </Typography>
@@ -74,7 +75,7 @@ const ParticularInternship = () => {
                     </Typography>
                     Applications are closed for this internship.
                     <Link
-                        href="#"
+                        to="#"
                         sx={{
                             textDecoration: "none",
                             marginLeft: "3px",
@@ -83,7 +84,7 @@ const ParticularInternship = () => {
                     >
                         Click here
                     </Link>
-                    to brouse more internships
+                    to browse more internships
                 </Typography>
                 <Grid Container spacing={3} mt={6}>
                     <Paper elevation={4}>
@@ -168,7 +169,7 @@ const ParticularInternship = () => {
                                     <Paper elevation={6}>
                                         <Grid pt={3} ml={2} mr={2} pb={2}>
                                             <Typography sx={{ fontWeight: "bold" }}>
-                                                Activity on Internshala
+                                                Activity on XcitEducation
                                             </Typography>
                                             <Grid display="flex" justifyContent="space-between">
                                                 <Box sx={{ display: "flex" }}>
@@ -246,19 +247,19 @@ const ParticularInternship = () => {
                                 </Box>
                                 <Grid mt={3}>
                                     <Typography>
-                                        Learn these skills on Internshala Trainings
+                                        Learn these skills on XcitEducation Trainings
                                     </Typography>
                                     <Box
                                         mt={2}
                                         sx={{ display: "flex", justifyContent: "space-around" }}
                                     >
                                         <Typography>
-                                            <Link sx={{ textDecoration: "none" }} href="#">
+                                            <Link sx={{ textDecoration: "none" }} to="#">
                                                 Learn Web Development
                                             </Link>
                                         </Typography>
                                         <Typography>
-                                            <Link sx={{ textDecoration: "none" }} href="#">
+                                            <Link sx={{ textDecoration: "none" }} to="#">
                                                 Learn Business Communication
                                             </Link>
                                         </Typography>
@@ -296,9 +297,41 @@ const ParticularInternship = () => {
                                     </Typography>
                                     <Typography>20</Typography>
                                 </Grid>
-                                <Grid display="flex" justifyContent="center">
-                                    <Button disabled>Already Applied</Button>
-                                </Grid>
+                                {/* <Link to="/questions">
+                                    <Grid display="flex" justifyContent="center">
+                                        <Button variant="contained">Apply</Button>
+                                    </Grid>
+                                </Link> */}
+                                {userInfo ? (
+                                    <Link to="/questions" style={{ textDecoration: "none" }}>
+                                        <Grid display="flex" justifyContent="center">
+                                            <Button variant="contained">Apply</Button>
+                                        </Grid>
+                                    </Link>
+                                )
+                                    :
+                                    (
+                                        <Link to="/login" style={{ textDecoration: "none" }}>
+                                            <Grid display="flex" justifyContent="center">
+                                                <Button style={{ backgroundColor: "orange" }} variant="contained">Login to Apply</Button>
+                                            </Grid>
+                                        </Link>
+                                    )
+                                }
+                                {/* <Button variant="contained">Apply</Button>
+                                <Button disabled variant="contained" color="danger">Login to Apply</Button> */}
+                                {/* {isLoggedIn == true ? (
+                                    <Link to="/questions">
+                                        <Grid display="flex" justifyContent="center">
+                                            <Button variant="contained">Apply</Button>
+                                        </Grid>
+                                    </Link>
+                                ) : (
+                                    <Grid display="flex" justifyContent="center">
+                                        <Button disabled variant="contained" color="danger">Login to Apply</Button>
+                                    </Grid>
+                                )} */}
+
                                 <Typography
                                     sx={{ border: "3px solid #FFAB76 ", color: "#B3541E" }}
                                     p={1}
@@ -314,7 +347,7 @@ const ParticularInternship = () => {
                                         <Typography >
                                             if an employer asks you to pay any security deposit,
                                             registration fee, laptop fee, etc., do not pay and notify us
-                                            immediately. Remember, Internshala doesn't charge a fee from
+                                            immediately. Remember, XcitEducation doesn't charge a fee from
                                             the students to apply to a job or an internship & we don't
                                             allow other companies to do so either.
                                         </Typography>
@@ -324,7 +357,7 @@ const ParticularInternship = () => {
                         </Grid>
                     </Paper>
                 </Grid>
-            </Grid>
+            </Grid >
         </>
     );
 };

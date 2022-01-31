@@ -12,7 +12,8 @@ import {
   Slider,
   Paper,
   Autocomplete,
-  CardMedia
+  CardMedia,
+  Button
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"
@@ -62,7 +63,7 @@ const AllInternships = () => {
     {
       id: 1,
       companyName: "Ideadunes",
-      title: "Web Development",
+      title: "Mern Development",
       location: "Mumbai",
       startsAt: "Immediately",
       duration: "6",
@@ -103,12 +104,24 @@ const AllInternships = () => {
   // { title: "Database Courses", data: databaseCourseList },
   // { title: "Fullstack Courses", data: fullstackCourseList },
   // { title: "Other Courses", data: otherCourseList },
-
+  const [search, setsearch] = useState("");
+  const inputEvent = (event) => {
+    const data = event.target.value;
+    console.log(data);
+    setsearch(data);
+  };
   const internTypes = [
     { label: "Web development" },
     { label: "MERN Stack development" },
   ];
-
+  let dataSearch = internships.filter((item) => {
+    return Object.keys(item).some((key) =>
+      item[key]
+        .toString()
+        .toLowerCase()
+        .includes(search.toString().toLowerCase())
+    );
+  });
   return (
     <>
       <Box pt={3} textAlign="center">
@@ -143,7 +156,7 @@ const AllInternships = () => {
           <Typography variant="subtitle2" color="initial" sx={{ mx: 2 }}>
             Categorie
           </Typography>
-          <Autocomplete
+          {/* <Autocomplete
             disablePortal
             options={internTypes}
             sx={{ width: 198 }}
@@ -155,6 +168,18 @@ const AllInternships = () => {
                 label="e.g. Marketing"
               />
             )}
+          /> */}
+          <TextField
+            id="outlined-basic"
+            label="e.g. Marketing"
+            variant="outlined"
+            size="small"
+            name="search"
+            // value={search.search}
+            // onChange={handleChange}
+            value={search}
+            onChange={inputEvent}
+            sx={{ mx: 2 }}
           />
           {/* <TextField
             id="outlined-basic"
@@ -229,7 +254,7 @@ const AllInternships = () => {
         </Box>
         <Box className="Main" sx={{ flexGrow: 1, flexDirection: "column" }}>
           {/* sssssssssssss */}
-          {allInternshipsList.map((item) => (
+          {dataSearch.map((item) => (
             <Card
               key={item._id}
               variant="outlined"
@@ -358,14 +383,18 @@ const AllInternships = () => {
                     >
                       Internship
                     </Typography>
-                    <Link to={`/internship/${item._id}`}><Typography
+                    <Link to={`/internship/${item._id}`} style={{ textDecoration: "none" }}>
+                      {/* <Typography
                       variant="subtitle1"
                       color="Primary"
                     // component={Link}
                     // to="/particularInternship"
-                    >
-                      View Offer
-                    </Typography></Link>
+                    > */}
+                      <Button variant="contained" color="primary">
+                        View Internship
+                      </Button>
+                      {/* </Typography> */}
+                    </Link>
                   </Box>
                 </CardContent>
               </Box>

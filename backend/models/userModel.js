@@ -63,10 +63,32 @@ const userSchema = mongoose.Schema(
             required: true,
             default: "Description",
         },
-        domains: [
+        location: {
+            type: String,
+            required: true,
+            default: "Description",
+        },
+        education: {
+            type: String,
+            required: true,
+            default: "Bachelor of Technology",
+        },
+        projects: [{
+            projectName: {
+                type: String,
+                default: "E-learning Website"
+            },
+            projectLink: {
+                type: String,
+                default: "https://github.com/vidhishpanchal/Full-Stack-Simplified"
+            },
+        }],
+
+        skills: [
             {
                 skillName: {
                     type: String,
+                    default: "ReactJS"
                 },
             },
         ],

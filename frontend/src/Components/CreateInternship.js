@@ -94,8 +94,8 @@ function CreateInternship() {
         aboutInternship: "",
         noOfOpenings: 0,
         skillsRequired: [],
-        perks: [],
-        questions: [],
+        perks: new Set([]),
+        questions: [{ 0: "Why should we hire you ?", 1: "Are you available to start immediately for the above mentioned period ?" }],
         isPartTime: false,
         isPPO: false
     });
@@ -406,15 +406,22 @@ function CreateInternship() {
                                         <FormGroup>
                                             <FormControlLabel
                                                 control={<Checkbox />}
+                                                value="certificate"
+
+                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                                 label="Certificate"
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Flexible work hours"
+                                                value="Flexible Working Hours"
+                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="5 days a week"
+                                                value="5 days a week"
+                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                         </FormGroup>
                                     </Box>
@@ -423,14 +430,20 @@ function CreateInternship() {
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Letter of recommendation"
+                                                value="Letter of recommendation"
+                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Informal dress code"
+                                                value="Informal Dress code"
+                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Free snacks & beverages"
+                                                value="Free snacks & beverages"
+                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                         </FormGroup>
                                     </Box>
