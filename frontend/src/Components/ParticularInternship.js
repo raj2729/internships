@@ -8,7 +8,7 @@ import {
     Button,
     Divider,
 } from "@mui/material";
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
@@ -22,17 +22,23 @@ import {
     oneInternshipDetails,
     allUserInternshipActions,
 } from "../actions/internshipActions";
-const ParticularInternship = () => {
+
+
+
+const ParticularInternship = (props) => {
     const dispatch = useDispatch();
+    const { id } = useParams();
+    const [item, setItem] = useState([]);
     // const [isEnrolled, setIsEnrolled] = useState(false);
     //   const isEnrolledInCourse = useSelector((state) => state.isEnrolledInCourse);
     //   const { loading: isEnrolledLoading, isEnrolled } = isEnrolledInCourse;
-    const internshipDetails = useSelector((state) => state.internshipDetails);
-    const { loading, error, internship } = internshipDetails;
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const theInternship = useSelector((state) => state.oneInternshipDetails);
+    const { loading, error, internshipDetails } = theInternship;
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
-    const allUserInternships = useSelector((state) => state.allUserInternships);
+    // const allUserInternships = useSelector((state) => state.allUserInternships);
+    const { data } = internshipDetails
     // const { loading: allInternshipsLoading, internships: allInternships } = internshipDetails;
     // const [
     //     isUserEnrolledInCourseFromAllCourses,
@@ -40,11 +46,24 @@ const ParticularInternship = () => {
     // ] = useState(false);
 
     // const bearerToken = localStorage.getItem("token");
+    // const internship = internshipDetails.data
     useEffect(() => {
-        console.log("internshipDetails: ", internshipDetails);
+
+        // console.log("allUserInternships", allUserInternships);
+        // console.log("internshipDetails: ", data)
+        // console.log(internship._id)
+
+        // console.log("id from useParams", id);
+        dispatch(oneInternshipDetails(id));
+        setItem(data)
+        console.log("item", item)
+        console.log("match", props.match);
+        // console.log("history", history);
         console.log("userInfo : ", userInfo);
     }, []);
-
+    // const logInternship = () => {
+    //     console.log("Log karta hu to bhi aata hai , ", internship._id);
+    // }
     return (
         <>
             <Grid ml={25} mr={25} mt={8}>
@@ -53,7 +72,7 @@ const ParticularInternship = () => {
                         <ArrowBackIosIcon />
                     </Typography>
                     <Link to="#" sx={{ textDecoration: "none" }}>
-                        Browse more internship
+                        Browse more internships
                     </Link>
                 </Typography>
                 <Typography
@@ -61,8 +80,15 @@ const ParticularInternship = () => {
                     sx={{ display: "flex", justifyContent: "center" }}
                     variant="h5"
                 >
-                    MERN Stack Development work from home job/internship at <br />{" "}
-                    XcitEducation Foundations
+                    {/* <Button variant="contained" onClick={() => {
+                        console.log("Log karta hu to bhi aata hai , ", internship._id);
+                    }}>Vidhish</Button> */}
+                    {/* {`aaa${internshipDetails.data._id}`} */}
+                    {/* <p>{internshipDetails.data._id}</p> */}
+                    {/* {data} */}
+                    {item.title}{" "}
+                    {item.location} internship at <br />{" "}
+                    {item.companyName}
                 </Typography>
                 <Typography
                     sx={{ border: "3px solid #FFAB76 ", color: "#B3541E" }}
@@ -75,7 +101,7 @@ const ParticularInternship = () => {
                     </Typography>
                     Applications are closed for this internship.
                     <Link
-                        to="#"
+                        to="/allInternships"
                         sx={{
                             textDecoration: "none",
                             marginLeft: "3px",
@@ -91,22 +117,22 @@ const ParticularInternship = () => {
                         <Grid>
                             <Grid ml={5} mt={3} mr={3} pb={5} mb={5}>
                                 <Typography sx={{ paddingTop: "15px" }}>
-                                    MERN Stack Development
+                                    {item.title}
                                 </Typography>
                                 <Box sx={{ display: "flex", marginTop: "8px" }}>
-                                    <Typography>XcitEducation Foundations</Typography>
-                                    <Typography
+                                    <Typography>{item.companyName}</Typography>
+                                    {/* <Typography
                                         ml={2}
                                         sx={{ color: "green", backgroundColor: "#BAFFB4" }}
                                     >
                                         NGO
-                                    </Typography>
+                                    </Typography> */}
                                 </Box>
                                 <Box sx={{ display: "flex", marginTop: "14px" }}>
                                     <Typography>
                                         <HomeWorkIcon />
                                     </Typography>
-                                    <Typography ml={2}>Work from Home</Typography>
+                                    <Typography ml={2}>{item.location}</Typography>
                                 </Box>
                                 <Grid mt={5} display="flex" justifyContent="space-between">
                                     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -116,7 +142,7 @@ const ParticularInternship = () => {
                                             </Typography>
                                             <Typography ml={1}>Start Date</Typography>
                                         </Box>
-                                        <Typography ml={3}>Immediately</Typography>
+                                        <Typography ml={3}>{item.startsAt}</Typography>
                                     </Box>
                                     <Box sx={{ display: "flex", flexDirection: "column" }}>
                                         <Box sx={{ display: "flex" }}>
@@ -125,7 +151,7 @@ const ParticularInternship = () => {
                                             </Typography>
                                             <Typography ml={1}>Duration</Typography>
                                         </Box>
-                                        <Typography ml={3}>3 Months</Typography>
+                                        <Typography ml={3}>{item.duration} Months</Typography>
                                     </Box>
                                     <Box sx={{ display: "flex", flexDirection: "column" }}>
                                         <Box sx={{ display: "flex" }}>
@@ -134,7 +160,7 @@ const ParticularInternship = () => {
                                             </Typography>
                                             <Typography ml={1}>Stipend</Typography>
                                         </Box>
-                                        <Typography ml={3}>Unpaid</Typography>
+                                        <Typography ml={3}>{item.stipend === ("Unpaid" || "unpaid") ? "Unpaid" : (<>{`Rs.${item.stipend} /month`}</>)}</Typography>
                                     </Box>
                                     <Box sx={{ display: "flex", flexDirection: "column" }}>
                                         <Box sx={{ display: "flex" }}>
@@ -143,7 +169,7 @@ const ParticularInternship = () => {
                                             </Typography>
                                             <Typography ml={1}>Apply By</Typography>
                                         </Box>
-                                        <Typography ml={3}>5 Jan 22</Typography>
+                                        <Typography ml={3}>{item.lastDate}</Typography>
                                     </Box>
                                 </Grid>
                                 <Typography ml={3} p={2}>
@@ -158,18 +184,17 @@ const ParticularInternship = () => {
                                 <Divider />
                                 <Grid mt={2}>
                                     <Typography sx={{ fontWeight: "bold" }}>
-                                        About XcitEducation Foundations
+                                        About {item.companyName}
                                     </Typography>
                                     <Typography variant="h7">
-                                        XcitEducation Foundations is an initiative to promote free
-                                        education for students coming from all sections of society.
+                                        {item.aboutCompany}
                                     </Typography>
                                 </Grid>
                                 <Grid mt={3} m={3}>
                                     <Paper elevation={6}>
                                         <Grid pt={3} ml={2} mr={2} pb={2}>
                                             <Typography sx={{ fontWeight: "bold" }}>
-                                                Activity on XcitEducation
+                                                Activity on {item.companyName}
                                             </Typography>
                                             <Grid display="flex" justifyContent="space-between">
                                                 <Box sx={{ display: "flex" }}>
@@ -198,13 +223,14 @@ const ParticularInternship = () => {
                                 </Grid>
                                 <Grid mt={2}>
                                     <Typography sx={{ fontWeight: "bold" }}>
-                                        About the work from home job/internship
+                                        About the {item.location} internship
                                     </Typography>
                                     <Typography variant="h7">
                                         Selected intern's day-to-day responsibilities include:
                                     </Typography>
                                     <Grid mt={2}>
-                                        <Typography>
+                                        {item.aboutInternship}
+                                        {/* <Typography>
                                             1. Write well designed, testable, efficient code by using
                                             best software development practices
                                         </Typography>
@@ -234,7 +260,7 @@ const ParticularInternship = () => {
                                         <Typography>
                                             8. Cooperate with web designers to match visual design
                                             intent
-                                        </Typography>
+                                        </Typography> */}
                                     </Grid>
                                 </Grid>
                                 <Box mt={3}>
@@ -242,7 +268,7 @@ const ParticularInternship = () => {
                                         Skill(s) required
                                     </Typography>
                                     <Typography mt={1} ml={2}>
-                                        MERN/MEAN Stack
+                                        {/* {item.skillsRequired} */}
                                     </Typography>
                                 </Box>
                                 <Grid mt={3}>
@@ -271,14 +297,13 @@ const ParticularInternship = () => {
                                     </Typography>
                                     <Typography>Only those candidates can apply who:</Typography>
                                     <Typography mt={1}>
-                                        1. are available for the work from home job/internship
+                                        1. are available for the {item.location} internship
                                     </Typography>
                                     <Typography>
-                                        2. can start the work from home job/internship between 24th
-                                        Dec'21 and 28th Jan'22
+                                        2. can start the {item.location} job/internship in a period of 7 days starting from {item.startsAt}
                                     </Typography>
                                     <Typography>
-                                        3. are available for duration of 3 months
+                                        3. are available for duration of {item.duration} months
                                     </Typography>
                                     <Typography>4. have relevant skills and interests</Typography>
                                 </Grid>
@@ -295,7 +320,7 @@ const ParticularInternship = () => {
                                     <Typography sx={{ fontWeight: "bold" }}>
                                         Number of openings
                                     </Typography>
-                                    <Typography>20</Typography>
+                                    <Typography>{item.numberOfOpenings}</Typography>
                                 </Grid>
                                 {/* <Link to="/questions">
                                     <Grid display="flex" justifyContent="center">

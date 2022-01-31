@@ -44,7 +44,7 @@ function App() {
             {/* <Route path="/login/CompanyLog" element={<CompanyLog />} /> */}
             <Route path="/login/MyApplication" element={<MyApplication />} />
             <Route path="/allInternships" element={<AllInternships />} />
-            <Route path="/internship/:id" element={<ParticularInternship />} />
+            <Route exact path="/internship/:id" element={<ParticularInternship />} />
             <Route path="/questions" element={<Questions />} />
             <Route path="/createInternship" element={<CreateInternship />} />
             <Route
