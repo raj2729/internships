@@ -248,7 +248,7 @@ export const otherInternshipListAction = () => async (dispatch) => {
 
 export const createInternship =
     (
-        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO
+        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO, website
     ) =>
         async (dispatch) => {
             try {
@@ -259,7 +259,7 @@ export const createInternship =
                 const { data } = await axios.post(
                     "/internship/createinternship",
                     {
-                        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO
+                        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO, website
 
                     },
                     config

@@ -73,6 +73,9 @@ const userSchema = mongoose.Schema(
             required: true,
             default: "Bachelor of Technology",
         },
+        website: {
+            type: String
+        },
         projects: [{
             projectName: {
                 type: String,

@@ -54,7 +54,7 @@ function CreateInternship() {
     ];
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createInternship(form.employerId, form.title, form.type, form.companyLogo, form.companyName, form.location, form.startsAt, form.duration, form.stipend, form.lastDateToApply, form.aboutCompany, form.aboutInternship, form.noOfOpenings, form.skillsRequired, form.perks, form.questions, form.isPartTime, form.isPPO));
+        dispatch(createInternship(form.employerId, form.title, form.type, form.companyLogo, form.companyName, form.location, form.startsAt, form.duration, form.stipend, form.lastDateToApply, form.aboutCompany, form.aboutInternship, form.noOfOpenings, form.skillsRequired, form.perks, form.questions, form.isPartTime, form.isPPO, form.website));
         navigate("/allInternships")
         //   e.preventDefault();
         //   setTitleError(false);
@@ -91,13 +91,14 @@ function CreateInternship() {
         stipend: "",
         lastDateToApply: "",
         aboutCompany: userInfo.data.description,
-        aboutInternship: "",
+        aboutInternship: "1) You have to daily do all the tasks assigned to you \n 2) Keep a track of all the tasks that you have performed in a day. \n 3) Report all the  progress in tasks to your manager.",
         noOfOpenings: 0,
-        skillsRequired: [],
+        skillsRequired: "",
         perks: new Set([]),
-        questions: [{ 0: "Why should we hire you ?", 1: "Are you available to start immediately for the above mentioned period ?" }],
+        questions: [],
         isPartTime: false,
-        isPPO: false
+        isPPO: false,
+        website: userInfo.data.website
     });
 
     return (
@@ -340,6 +341,8 @@ function CreateInternship() {
                                             <TextareaAutosize
                                                 value={form.aboutInternship}
                                                 onChange={handleChange}
+                                                // style={{ forntSize: "20px" }}
+                                                variant="h3"
                                                 name="aboutInternship"
                                                 aria-label="empty textarea"
                                                 placeholder="Enter Intern's Daily Responsibilities"
@@ -408,20 +411,20 @@ function CreateInternship() {
                                                 control={<Checkbox />}
                                                 value="certificate"
 
-                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                                // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                                 label="Certificate"
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Flexible work hours"
                                                 value="Flexible Working Hours"
-                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="5 days a week"
                                                 value="5 days a week"
-                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                         </FormGroup>
                                     </Box>
@@ -431,19 +434,19 @@ function CreateInternship() {
                                                 control={<Checkbox />}
                                                 label="Letter of recommendation"
                                                 value="Letter of recommendation"
-                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Informal dress code"
                                                 value="Informal Dress code"
-                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Free snacks & beverages"
                                                 value="Free snacks & beverages"
-                                                onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
                                             />
                                         </FormGroup>
                                     </Box>
@@ -490,6 +493,9 @@ function CreateInternship() {
                                     sx={{ marginTop: "1rem" }}
                                     type="text"
                                     placeholder="MERN,Adobe,MS-Office etc.."
+                                    name="skillsRequired"
+                                    value={form.skillsRequired}
+                                    onChange={handleChange}
                                 ></TextField>
                                 <FormGroup>
                                     <FormControlLabel

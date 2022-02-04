@@ -27,13 +27,13 @@ LIST OF CONTROLLERS
 // Create a new Internship
 const createInternship = asyncHandler(async (req, res) => {
     const {
-        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO
+        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO, website
 
     } = req.body;
     // const instructorId = req.user._id;
     console.log(req.body);
     const InternshipNew = await Internship.create({
-        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO
+        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO, website
 
     });
 

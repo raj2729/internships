@@ -7,6 +7,7 @@ const connectDB = require("./config/config");
 // Routes
 const userRoutes = require("./routes/userRoutes");
 const internshipRoutes = require("./routes/internshipRoutes");
+const applicationRoutes = require("./routes/applicationRoutes");
 // const orderRoutes = require("./routes/orderRoutes");
 // const discussRoutes = require("./routes/discussRoutes");
 // const testimonialRoutes = require("./routes/testimonialRoutes");
@@ -36,6 +37,7 @@ const PORT = process.env.PORT || 8080
 
 app.use("/user", userRoutes);
 app.use("/internship", internshipRoutes);
+app.use("/application", applicationRoutes);
 // app.use("/order", orderRoutes);
 // app.use("/discuss", discussRoutes);
 // app.use("/testimonial", testimonialRoutes);

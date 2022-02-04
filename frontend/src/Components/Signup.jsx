@@ -55,7 +55,7 @@ function Signup() {
     //   //dispatch
     //   dispatch(register(name, email, password));
     // }
-    dispatch(register(user.name, user.email, user.password, user.linkedin, user.isEmployer, user.certificateOfIncorporation, user.pancard, user.gst, user.mobile, user.github, user.description, user.resume, user.profilePicture, user.education, user.location));
+    dispatch(register(user.name, user.email, user.password, user.linkedin, user.isEmployer, user.certificateOfIncorporation, user.pancard, user.gst, user.mobile, user.github, user.description, user.resume, user.profilePicture, user.education, user.location, user.website));
     
   };
   const [user, setUser] = useState({
@@ -73,7 +73,8 @@ function Signup() {
     description:"",
     profilePicture:"",
     education:"Bachelor of Technology",
-    location:"Mumbai"
+    location:"Mumbai",
+    website:""
   });
   const registerUser = ()=>{
     console.log(user);
@@ -289,6 +290,18 @@ function Signup() {
            
            </>
           )}
+          <TextField
+            value={user.website}
+            onChange={handleChange}
+            label="Website/ Portfolio"
+            sx={{ mt: 2 }}
+            placeholder="Website/ Portfolio"
+            type="url"
+            name="website"
+            fullWidth
+          ></TextField>
+           
+         
           <TextField
           value={user.description}
           onChange={handleChange}

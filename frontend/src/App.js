@@ -33,27 +33,27 @@ function App() {
         <ThemeProvider theme={theme}>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            {/* <Route path="/register/Student" element={<Student />} /> */}
-            {/* <Route path="/register/Company" element={<Employ />} /> */}
-            {/* <Route path="/login/StudentLog" element={<StudentLog />} /> */}
-            {/* <Route path="/login/CompanyLog" element={<CompanyLog />} /> */}
-            <Route path="/login/MyApplication" element={<MyApplication />} />
-            <Route path="/allInternships" element={<AllInternships />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/contact" element={<Contact />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/signup" element={<Signup />} />
+            {/* <Route exact path="/register/Student" element={<Student />} /> */}
+            {/* <Route exact path="/register/Company" element={<Employ />} /> */}
+            {/* <Route exact path="/login/StudentLog" element={<StudentLog />} /> */}
+            {/* <Route exact path="/login/CompanyLog" element={<CompanyLog />} /> */}
+            <Route exact path="/login/MyApplication" element={<MyApplication />} />
+            <Route exact path="/allInternships" element={<AllInternships />} />
             <Route exact path="/internship/:id" element={<ParticularInternship />} />
-            <Route path="/questions" element={<Questions />} />
-            <Route path="/createInternship" element={<CreateInternship />} />
+            <Route exact path="/questions/:id" element={<Questions />} />
+            <Route exact path="/createInternship" element={<CreateInternship />} />
             <Route
-              path="/login/MyApplicationCard"
+              exact path="/login/MyApplicationCard"
               element={<MyApplicationCard />}
             />
-            <Route path="/Employee/Dashboard" element={<Employee_dash />} />
+            <Route exact path="/Employee/Dashboard" element={<Employee_dash />} />
             <Route
-              path="/Employee/Internship"
+              exact path="/Employee/Internship"
               element={<Employee_intern_dash />}
             />
           </Routes>

@@ -114,7 +114,7 @@ const AllInternships = () => {
     { label: "Web development" },
     { label: "MERN Stack development" },
   ];
-  let dataSearch = internships.filter((item) => {
+  const dataSearch = internships.filter((item) => {
     return Object.keys(item).some((key) =>
       item[key]
         .toString()
@@ -122,6 +122,14 @@ const AllInternships = () => {
         .includes(search.toString().toLowerCase())
     );
   });
+  // const dataSearch = internshipArray.filter((item) => {
+  //   return Object.keys(item).some((key) =>
+  //     item[key]
+  //       .toString()
+  //       .toLowerCase()
+  //       .includes(search.toString().toLowerCase())
+  //   );
+  // });
   return (
     <>
       <Box pt={3} textAlign="center">

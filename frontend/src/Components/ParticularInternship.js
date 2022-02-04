@@ -55,12 +55,14 @@ const ParticularInternship = (props) => {
 
         // console.log("id from useParams", id);
         dispatch(oneInternshipDetails(id));
+        // console.log(internshipDetails)
+        console.log(theInternship)
         setItem(data)
-        console.log("item", item)
+        // console.log("item", item)
         console.log("match", props.match);
         // console.log("history", history);
         console.log("userInfo : ", userInfo);
-    }, []);
+    }, [dispatch]);
     // const logInternship = () => {
     //     console.log("Log karta hu to bhi aata hai , ", internship._id);
     // }
@@ -90,7 +92,7 @@ const ParticularInternship = (props) => {
                     {item.location} internship at <br />{" "}
                     {item.companyName}
                 </Typography>
-                <Typography
+                {/* <Typography
                     sx={{ border: "3px solid #FFAB76 ", color: "#B3541E" }}
                     p={1}
                     mt={5}
@@ -111,7 +113,7 @@ const ParticularInternship = (props) => {
                         Click here
                     </Link>
                     to browse more internships
-                </Typography>
+                </Typography> */}
                 <Grid Container spacing={3} mt={6}>
                     <Paper elevation={4}>
                         <Grid>
@@ -186,9 +188,15 @@ const ParticularInternship = (props) => {
                                     <Typography sx={{ fontWeight: "bold" }}>
                                         About {item.companyName}
                                     </Typography>
-                                    <Typography variant="h7">
-                                        {item.aboutCompany}
-                                    </Typography>
+
+                                    {item.website ? (
+                                        <Typography variant="h7">
+                                            Website
+                                            <a href={item.website}>{item.website}</a>
+                                        </Typography>
+                                    ) : ""}
+                                    {item.aboutCompany}
+
                                 </Grid>
                                 <Grid mt={3} m={3}>
                                     <Paper elevation={6}>
@@ -310,8 +318,10 @@ const ParticularInternship = (props) => {
                                 <Grid mt={2}>
                                     <Typography sx={{ fontWeight: "bold" }}>Perks</Typography>
                                     <Box mt={2} display="flex" justifyContent="space-around">
+                                        {/* {item.perks.map((perk) => { <Typography>{perk}</Typography> }
+                                        )} */}
                                         <Typography>Certificate</Typography>
-                                        <Typography>Letter of recommendation</Typography>
+                                        <Typography>Letter of recommendation(Performance Based)</Typography>
                                         <Typography>Flexible work hours</Typography>
                                         <Typography>5 days a week</Typography>
                                     </Box>
@@ -320,7 +330,7 @@ const ParticularInternship = (props) => {
                                     <Typography sx={{ fontWeight: "bold" }}>
                                         Number of openings
                                     </Typography>
-                                    <Typography>{item.numberOfOpenings}</Typography>
+                                    <Typography>{item.noOfOpenings ? item.noOfOpenings : item.numberOfOpenings}</Typography>
                                 </Grid>
                                 {/* <Link to="/questions">
                                     <Grid display="flex" justifyContent="center">
@@ -328,7 +338,7 @@ const ParticularInternship = (props) => {
                                     </Grid>
                                 </Link> */}
                                 {userInfo ? (
-                                    <Link to="/questions" style={{ textDecoration: "none" }}>
+                                    <Link to={`/questions/${item._id}`} style={{ textDecoration: "none" }}>
                                         <Grid display="flex" justifyContent="center">
                                             <Button variant="contained">Apply</Button>
                                         </Grid>

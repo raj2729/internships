@@ -14,7 +14,7 @@ const applicationSchema = mongoose.Schema(
         },
         isComplete: {
             type: Boolean,
-            required: true,
+            // required: true,
             default: false,
         },
         location: {
@@ -35,24 +35,34 @@ const applicationSchema = mongoose.Schema(
         ans2: {
             type: String,
         },
-        projects: [{
-            projectName: {
-                type: String,
-                default: "E-learning Website"
-            },
-            projectLink: {
-                type: String,
-                default: "https://github.com/vidhishpanchal/Full-Stack-Simplified"
-            },
-        }],
-        skills: [
-            {
-                skillName: {
-                    type: String,
-                    default: "ReactJS"
-                },
-            },
-        ],
+        projects: {
+            type: String,
+            required: true,
+            default: "No projects made"
+        },
+        skills: {
+            type: String,
+            required: "True",
+            default: "No skills to display"
+        },
+        // projects: [{
+        //     projectName: {
+        //         type: String,
+        //         default: "E-learning Website"
+        //     },
+        //     projectLink: {
+        //         type: String,
+        //         default: "https://github.com/vidhishpanchal/Full-Stack-Simplified"
+        //     },
+        // }],
+        // skills: [
+        //     {
+        //         skillName: {
+        //             type: String,
+        //             default: "ReactJS"
+        //         },
+        //     },
+        // ],
         applicationStatus: {
             type: String,
             required: true,
@@ -66,4 +76,4 @@ const applicationSchema = mongoose.Schema(
 
 const Application = mongoose.model("Application", applicationSchema);
 
-module.exports = Assignment;
+module.exports = Application;

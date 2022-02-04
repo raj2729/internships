@@ -39,7 +39,7 @@ import {
     //   allInstructorCoursesReducer,
     createInternshipReducer,
 } from "./reducers/internshipReducers";
-// import { createAssignmentReducer } from "./reducers/assignmentReducers";
+import { createApplicationReducer } from "./reducers/applicationReducers";
 // import { adminReducer } from "./reducers/adminReducers";
 
 // import { adminLoginReducer, adminViewOrders } from "./reducers/adminReducer";
@@ -88,7 +88,7 @@ const reducer = combineReducers({
     // dataScienceInternshipListReducer,
     // otherInternshipListReducer,
     //   isEnrolledInCourse: isUserEnrolledReducer,
-    //   assignment: createAssignmentReducer,
+    createApplication: createApplicationReducer,
     oneInternshipDetails: oneInternshipDetailsReducer,
     allUserInternships: allUserInternshipsReducer,
     allEmployerInternships: allEmployerInternshipsReducer,

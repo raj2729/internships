@@ -70,14 +70,17 @@ const InternshipSchema = mongoose.Schema(
             type: Number,
             required: true
         },
-        skillsRequired: [
-            {
-                skill: {
-                    type: String,
-                    required: true,
-                },
-            },
-        ],
+        skillsRequired: {
+            type: String,
+        },
+        // skillsRequired: [
+        //     {
+        //         skill: {
+        //             type: String,
+        //             required: true,
+        //         },
+        //     },
+        // ],
 
         perks: [
             {
