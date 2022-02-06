@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Internship = require("../models/InternshipModel");
+const Internship = require("../models/internshipModel");
 const Razorpay = require("razorpay");
 const shortid = require("shortid");
 const { response } = require("express");

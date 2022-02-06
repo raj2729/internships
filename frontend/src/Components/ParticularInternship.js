@@ -55,8 +55,8 @@ const ParticularInternship = (props) => {
 
         // console.log("id from useParams", id);
         dispatch(oneInternshipDetails(id));
-        // console.log(internshipDetails)
-        console.log(theInternship)
+        console.log(internshipDetails)
+        // console.log(theInternship)
         setItem(data)
         // console.log("item", item)
         console.log("match", props.match);

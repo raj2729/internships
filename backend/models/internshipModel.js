@@ -73,6 +73,9 @@ const InternshipSchema = mongoose.Schema(
         skillsRequired: {
             type: String,
         },
+        website: {
+            type: String
+        },
         // skillsRequired: [
         //     {
         //         skill: {
