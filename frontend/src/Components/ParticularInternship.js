@@ -96,6 +96,40 @@ const ParticularInternship = (props) => {
           variant="h5"
         >
           {/* <Button variant="contained" onClick={() => {
+        // console.log("allUserInternships", allUserInternships);
+        // console.log("internshipDetails: ", data)
+        // console.log(internship._id)
+
+        // console.log("id from useParams", id);
+        dispatch(oneInternshipDetails(id));
+        console.log(internshipDetails)
+        // console.log(theInternship)
+        setItem(data)
+        // console.log("item", item)
+        console.log("match", props.match);
+        // console.log("history", history);
+        console.log("userInfo : ", userInfo);
+    }, [dispatch]);
+    // const logInternship = () => {
+    //     console.log("Log karta hu to bhi aata hai , ", internship._id);
+    // }
+    return (
+        <>
+            <Grid ml={25} mr={25} mt={8}>
+                <Typography display="flex">
+                    <Typography>
+                        <ArrowBackIosIcon />
+                    </Typography>
+                    <Link to="#" sx={{ textDecoration: "none" }}>
+                        Browse more internships
+                    </Link>
+                </Typography>
+                <Typography
+                    mt={8}
+                    sx={{ display: "flex", justifyContent: "center" }}
+                    variant="h5"
+                >
+                    {/* <Button variant="contained" onClick={() => {
                         console.log("Log karta hu to bhi aata hai , ", internship._id);
                     }}>Vidhish</Button> */}
           {/* {`aaa${internshipDetails.data._id}`} */}

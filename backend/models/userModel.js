@@ -79,12 +79,15 @@ const userSchema = mongoose.Schema(
         projects: [{
             projectName: {
                 type: String,
-                default: "E-learning Website"
+                // default: "E-learning Website"
             },
             projectLink: {
                 type: String,
-                default: "https://github.com/vidhishpanchal/Full-Stack-Simplified"
+                // default: "https://github.com/vidhishpanchal/Full-Stack-Simplified"
             },
+            projectDescription: {
+                type: String
+            }
         }],
 
         skills: [

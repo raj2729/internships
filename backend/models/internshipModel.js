@@ -82,11 +82,15 @@ const InternshipSchema = mongoose.Schema(
       {
         question: {
           type: String,
+          default: "Why should we hire you?",
         },
-        default: [
-          "Why should we hire you?",
-          "Will you be able to start immediately for the duration mentioned?",
-        ],
+      },
+      {
+        question: {
+          type: String,
+          default:
+            "Will you be able to start immediately for the duration mentioned?",
+        },
       },
     ],
     isPartTime: {

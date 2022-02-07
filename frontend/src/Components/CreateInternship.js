@@ -16,6 +16,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -36,6 +38,14 @@ import { useNavigate } from "react-router-dom";
 function CreateInternship() {
     const navigate = useNavigate()
     // const [age, setAge] = React.useState("");
+    const [open, setOpen] = useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
     const userLogin = useSelector((state) => state.userLogin);
     const { loading, error, userInfo } = userLogin;
     const [isImmediately, setIsImmediately] = useState(true);
@@ -54,8 +64,16 @@ function CreateInternship() {
     ];
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createInternship(form.employerId, form.title, form.type, form.companyLogo, form.companyName, form.location, form.startsAt, form.duration, form.stipend, form.lastDateToApply, form.aboutCompany, form.aboutInternship, form.noOfOpenings, form.skillsRequired, form.perks, form.questions, form.isPartTime, form.isPPO, form.website));
-        navigate("/allInternships")
+        dispatch(createInternship(form.employerId, form.title, form.type, form.companyLogo, form.companyName, form.location, form.startsAt, form.duration, form.stipend, form.lastDateToApply, form.aboutCompany, form.aboutInternship, form.noOfOpenings, form.skillsRequired, form.perks, form.questions, form.isPartTime, form.isPPO, form.website))
+            .then(() => {
+                setOpen(true);
+                setTimeout(() => {
+                    navigate("/allInternships");
+                }, 5000)
+                // navigate("/allInternships")
+            }).catch((err) => {
+                console.log(err)
+            })
         //   e.preventDefault();
         //   setTitleError(false);
         //   settypeError(false);
@@ -78,6 +96,9 @@ function CreateInternship() {
         value = e.target.value;
         setForm({ ...form, [name]: value });
     };
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
     const [otherTitle, setOtherTitle] = useState("");
     const [form, setForm] = useState({
         employerId: userInfo.data._id,
@@ -103,6 +124,15 @@ function CreateInternship() {
 
     return (
         <>
+            <Stack spacing={2} sx={{ width: '100%' }}>
+
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        Your Internship has been posted!
+                    </Alert>
+                </Snackbar>
+
+            </Stack>
             <Grid width="100%" spacing={4}>
                 <form onSubmit={handleSubmit}>
                     <Box mt={2}>
@@ -410,21 +440,44 @@ function CreateInternship() {
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 value="certificate"
-
-                                                // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        form.perks.add(e.target.value);
+                                                    } else {
+                                                        form.perks.delete(e.target.value);
+                                                    }
+                                                    setForm({ ...form });
+                                                    console.log(form);
+                                                }}
                                                 label="Certificate"
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Flexible work hours"
                                                 value="Flexible Working Hours"
-                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        form.perks.add(e.target.value);
+                                                    } else {
+                                                        form.perks.delete(e.target.value);
+                                                    }
+                                                    setForm({ ...form });
+                                                    console.log(form);
+                                                }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="5 days a week"
                                                 value="5 days a week"
-                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        form.perks.add(e.target.value);
+                                                    } else {
+                                                        form.perks.delete(e.target.value);
+                                                    }
+                                                    setForm({ ...form });
+                                                    console.log(form);
+                                                }}
                                             />
                                         </FormGroup>
                                     </Box>
@@ -434,19 +487,49 @@ function CreateInternship() {
                                                 control={<Checkbox />}
                                                 label="Letter of recommendation"
                                                 value="Letter of recommendation"
-                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        form.perks.add(e.target.value)
+                                                    } else {
+                                                        form.perks.delete(e.target.value);
+                                                    }
+                                                    setForm({
+                                                        ...form,
+                                                    });
+                                                    console.log(form);
+                                                }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Informal dress code"
                                                 value="Informal Dress code"
-                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        form.perks.add(e.target.value)
+                                                    } else {
+                                                        form.perks.delete(e.target.value);
+                                                    }
+                                                    setForm({
+                                                        ...form,
+                                                    });
+                                                    console.log(form);
+                                                }}
                                             />
                                             <FormControlLabel
                                                 control={<Checkbox />}
                                                 label="Free snacks & beverages"
                                                 value="Free snacks & beverages"
-                                            // onChange={(e) => { setForm({ ...form, perks: [...form.perks, e.target.value] }); console.log(form) }}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        form.perks.add(e.target.value)
+                                                    } else {
+                                                        form.perks.delete(e.target.value);
+                                                    }
+                                                    setForm({
+                                                        ...form,
+                                                    });
+                                                    console.log(form);
+                                                }}
                                             />
                                         </FormGroup>
                                     </Box>
