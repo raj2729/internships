@@ -28,6 +28,22 @@ import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import { allInternshipsListAction } from "../actions/internshipActions";
 import { isUserEnrolledReset } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+
+const monthNames = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 const AllInternships = () => {
   const userLogin = useSelector((state) => state.userLogin);
@@ -78,18 +94,7 @@ const AllInternships = () => {
     },
   ];
   useEffect(() => {
-    // if (userInfo) dispatch(allUserCoursesAction(userInfo.data._id));
-    // dispatch(isUserEnrolledReset());
-    // if (userInfo) dispatch(allInstructorCoursesAction(userInfo.data._id));
-    // dispatch(frontendCourseListAction());
-    // dispatch(backendCourseListAction());
-    // dispatch(designingCourseListAction());
-    // dispatch(databaseCourseListAction());
-    // dispatch(fullstackCourseListAction());
     console.log(allInternshipsList);
-    // console.log("000 :", internships[0].title)
-    // dispatch(allInternshipsListAction());
-    // console.log("Sencond");
   }, []);
 
   const internships = internshipArray;
@@ -385,7 +390,9 @@ const AllInternships = () => {
                         fontSize="small"
                         sx={{ mx: 4 }}
                       >
-                        {item.lastDateToApply}
+                        {moment(item.lastDateToApply).date()}{" "}
+                        {monthNames[moment(item.lastDateToApply).month()]},{" "}
+                        {moment(item.lastDateToApply).year()}
                       </Typography>
                     </Box>
                   </Typography>

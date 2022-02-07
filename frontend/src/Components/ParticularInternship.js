@@ -9,6 +9,7 @@ import {
   Divider,
 } from "@mui/material";
 import axios from "axios";
+import moment from "moment";
 
 import { Link, useParams } from "react-router-dom";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -61,7 +62,6 @@ const ParticularInternship = (props) => {
 
   const fetchInternshipDetails = async () => {
     const { data } = await axios.get(`/internship/oneInternship/${id}`);
-    console.log(data.data);
     setInternshipDetail(data.data);
   };
 
@@ -231,13 +231,13 @@ const ParticularInternship = (props) => {
                       <Typography ml={1}>Apply By</Typography>
                     </Box>
                     <Typography ml={3}>
-                      {new Date(internshipDetail.lastDate).getDate()}{" "}
+                      {moment(internshipDetail.lastDateToApply).date()}{" "}
                       {
                         monthNames[
-                          new Date(internshipDetail.lastDate).getMonth()
+                          moment(internshipDetail.lastDateToApply).month()
                         ]
                       }
-                      , {new Date(internshipDetail.lastDate).getFullYear()}
+                      , {moment(internshipDetail.lastDateToApply).year()}
                     </Typography>
                   </Box>
                 </Grid>
@@ -248,7 +248,9 @@ const ParticularInternship = (props) => {
                   <Typography>
                     <Applicants />
                   </Typography>
-                  <Typography ml={1}>41 Applicants</Typography>
+                  <Typography ml={1}>
+                    {internshipDetail.noOfApplicants} Applicants
+                  </Typography>
                 </Box>
                 <Divider />
                 <Grid mt={2}>
@@ -389,25 +391,25 @@ const ParticularInternship = (props) => {
                 <Grid mt={2}>
                   <Typography sx={{ fontWeight: "bold" }}>Perks</Typography>
                   <Box mt={2} display="flex" justifyContent="space-around">
-                    {/* {item.perks.map((perk) => { <Typography>{perk}</Typography> }
-                                        )} */}
-                    <Typography>Certificate</Typography>
+                    {internshipDetail.perks &&
+                      internshipDetail.perks.map((perk, index) => (
+                        <Typography key={index}>{perk.perk}</Typography>
+                        // console.log(perk.perk);
+                      ))}
+
+                    {/* <Typography>Certificate</Typography>
                     <Typography>
                       Letter of recommendation(Performance Based)
                     </Typography>
                     <Typography>Flexible work hours</Typography>
-                    <Typography>5 days a week</Typography>
+                    <Typography>5 days a week</Typography> */}
                   </Box>
                 </Grid>
                 <Grid mt={2}>
                   <Typography sx={{ fontWeight: "bold" }}>
                     Number of openings
                   </Typography>
-                  <Typography>
-                    {item.noOfOpenings
-                      ? item.noOfOpenings
-                      : item.numberOfOpenings}
-                  </Typography>
+                  <Typography>{internshipDetail.noOfOpenings}</Typography>
                 </Grid>
                 {/* <Link to="/questions">
                                     <Grid display="flex" justifyContent="center">

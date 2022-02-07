@@ -52,7 +52,7 @@ const createInternship = asyncHandler(async (req, res) => {
     startsAt,
     duration,
     stipend,
-    lastDateToApply,
+    lastDateToApply: new Date(lastDateToApply),
     aboutCompany,
     aboutInternship,
     noOfOpenings,

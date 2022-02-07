@@ -19,7 +19,7 @@ const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allInternshipsListAction());
-    console.log("Dispatched");
+    // console.log("Dispatched");
   }, [dispatch]);
 
   return (
