@@ -1,12 +1,5 @@
-import {
-  Grid,
-  Paper,
-  TextField,
-  Button,
-  Typography,
-
-} from "@mui/material";
-import { Link, useNavigate } from 'react-router-dom'
+import { Grid, Paper, TextField, Button, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import { React, useState, useEffect } from "react";
 import "./Login.css";
@@ -15,16 +8,16 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userActions";
 import { Routes, Route } from "react-router-dom";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
 
 function Login() {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -34,13 +27,7 @@ function Login() {
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
     console.log(newValue);
-
   };
-  // useEffect((e) => {
-  //   // e.preventDefault()
-  //   // window.location.reload(true);
-  //   console.log("Login page");
-  // });
 
   useEffect(() => {
     if (userInfo) {
@@ -49,7 +36,7 @@ function Login() {
       // } else
       navigate("/");
       console.log("LoggedIn");
-      console.log(userInfo)
+      console.log(userInfo);
     }
   }, [userInfo, navigate]);
 
@@ -83,7 +70,7 @@ function Login() {
     <>
       <Grid>
         <Paper className="paper" elevation={10} style={paperStyle}>
-          <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+          <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
             <Tabs value={tabValue} onChange={handleTabChange} centered>
               <Tab value="student" label="Student" />
               <Tab value="employer" label="Employer" />
@@ -125,9 +112,15 @@ function Login() {
                     <div className="border"></div>
                   </div>
                 </>
-              ) : ""}
+              ) : (
+                ""
+              )}
 
-              <form style={{ marginTop: "10px" }} noValidate onSubmit={submitHandler}>
+              <form
+                style={{ marginTop: "10px" }}
+                noValidate
+                onSubmit={submitHandler}
+              >
                 <Grid>
                   <TextField
                     onChange={handleChange}

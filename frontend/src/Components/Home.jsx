@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography, Grid, Button, Link, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import SendIcon from "@mui/icons-material/Send";
 import "./Home.css";
 import work from "./image/work.jfif";
 import job from "./image/jobs.png";
+import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
+import { allInternshipsListAction } from "../actions/internshipActions";
+
 const useStyles = makeStyles((theme) => ({
   topographyStyle: {
     display: "flex",
@@ -13,6 +16,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Home = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(allInternshipsListAction());
+    console.log("Dispatched");
+  }, [dispatch]);
+
   return (
     <>
       <Grid m={10}>
