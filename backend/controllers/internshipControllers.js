@@ -1,18 +1,11 @@
 const asyncHandler = require("express-async-handler");
-const Internship = require("../models/InternshipModel");
-const Razorpay = require("razorpay");
-const shortid = require("shortid");
-const { response } = require("express");
-
-const razorpay = new Razorpay({
-    key_id: "rzp_test_tOsI14GHZSP3U8",
-    key_secret: "oytgKKbuxFUlZdx4qr4tzG4j",
-});
+const Internship = require("../models/internshipModel");
 
 /*
 LIST OF CONTROLLERS
-1. Create a new Internship - only instructors can
+1. Create a new Internship 
 2. Get all Internships - for every user
+
 3. Get all frontend Internships - for every user
 4. Get all backend Internships - for every user
 5. Get all database Internships - for every user
@@ -26,40 +19,62 @@ LIST OF CONTROLLERS
 
 // Create a new Internship
 const createInternship = asyncHandler(async (req, res) => {
-    const {
-        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO, website
+  const {
+    employerId,
+    title,
+    type,
+    companyLogo,
+    companyName,
+    location,
+    startsAt,
+    duration,
+    stipend,
+    lastDateToApply,
+    aboutCompany,
+    aboutInternship,
+    noOfOpenings,
+    skillsRequired,
+    perks,
+    questions,
+    isPartTime,
+    isPPO,
+    website,
+  } = req.body;
+  // const instructorId = req.user._id;
+  //   console.log(req.body);
+  const newInternship = await Internship.create({
+    employerId,
+    title,
+    type,
+    companyLogo,
+    companyName,
+    location,
+    startsAt,
+    duration,
+    stipend,
+    lastDateToApply,
+    aboutCompany,
+    aboutInternship,
+    noOfOpenings,
+    skillsRequired,
+    perks,
+    questions,
+    isPartTime,
+    isPPO,
+    website,
+  });
 
-    } = req.body;
-    // const instructorId = req.user._id;
-    console.log(req.body);
-    const InternshipNew = await Internship.create({
-        employerId, title, type, companyLogo, companyName, location, startsAt, duration, stipend, lastDateToApply, aboutCompany, aboutInternship, noOfOpenings, skillsRequired, perks, questions, isPartTime, isPPO, website
-
+  if (newInternship) {
+    res.status(201).json({
+      success: true,
+      data: newInternship,
     });
-
-    if (InternshipNew) {
-        res.status(201).json({
-            success: true,
-            data: Internship,
-            // _id: Internship._id,
-            // instructorId: Internship.instructorId,
-            // name: Internship.name,
-            // tagline: Internship.tagline,
-            // type: Internship.type,
-            // description: Internship.description,
-            // assignmentQuestion: Internship.assignmentQuestion,
-            // price: Internship.price,
-            // advantages: Internship.advantages,
-            // chapters: Internship.chapters,
-            // image: Internship.image,
-            // message: "Internship Created Successfully",
-        });
-    } else {
-        res.status(400).json({
-            success: false,
-            message: "Internship not Created Successfully",
-        });
-    }
+  } else {
+    res.status(400).json({
+      success: false,
+      message: "Internship not Created Successfully",
+    });
+  }
 });
 
 // Create a new chapter
@@ -162,178 +177,182 @@ const createInternship = asyncHandler(async (req, res) => {
 
 // Get details of all Internships
 const getAllInternships = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({});
-    if (Internships.length > 0) {
-        res.status(200).json(Internships);
-        console.log("All internships found");
-        // console.log();
-    } else {
-        res.status(404).json({
-            message: "No Internship found",
-        });
-    }
+  const internships = await Internship.find({});
+  if (internships.length > 0) {
+    res.status(200).json({
+      success: true,
+      data: internships,
+    });
+    // console.log("All internships found");
+    // console.log();
+  } else {
+    res.status(200).json({
+      success: false,
+      data: "No Internship found",
+    });
+  }
 });
 
 // Get details of all Frontend Internships
 const getAllWebdevInternships = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({ type: "webdev" });
-    if (Internships.length > 0) {
-        res.status(200).json(Internships);
-    } else {
-        res.status(404).json({
-            message: "No Webdev Internship found",
-        });
-    }
+  const Internships = await Internship.find({ type: "webdev" });
+  if (Internships.length > 0) {
+    res.status(200).json(Internships);
+  } else {
+    res.status(404).json({
+      message: "No Webdev Internship found",
+    });
+  }
 });
 
 // Get details of all Backend Internships
 const getAllDesigningInternships = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({ type: "design" });
-    if (Internships.length > 0) {
-        res.status(200).json(Internships);
-    } else {
-        res.status(404).json({
-            message: "No Designing Internship found",
-        });
-    }
+  const Internships = await Internship.find({ type: "design" });
+  if (Internships.length > 0) {
+    res.status(200).json(Internships);
+  } else {
+    res.status(404).json({
+      message: "No Designing Internship found",
+    });
+  }
 });
 
 // Get details of all Database Internships
 const getAllDigitalMarketingInternships = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({ type: "digitalmarketing" });
-    if (Internships.length > 0) {
-        res.status(200).json(Internships);
-    } else {
-        res.status(404).json({
-            message: "No Digital Marketing Internship found",
-        });
-    }
+  const Internships = await Internship.find({ type: "digitalmarketing" });
+  if (Internships.length > 0) {
+    res.status(200).json(Internships);
+  } else {
+    res.status(404).json({
+      message: "No Digital Marketing Internship found",
+    });
+  }
 });
 
 // Get details of all Fullstack Internships
 const getAllDataScienceInternships = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({ type: "datascience" });
-    if (Internships.length > 0) {
-        res.status(200).json(Internships);
-    } else {
-        res.status(404).json({
-            message: "No Data Science Internship found",
-        });
-    }
+  const Internships = await Internship.find({ type: "datascience" });
+  if (Internships.length > 0) {
+    res.status(200).json(Internships);
+  } else {
+    res.status(404).json({
+      message: "No Data Science Internship found",
+    });
+  }
 });
 
 // Get details of all Designing Internships
 const getAllContentWritingInternships = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({ type: "contentwriting" });
-    if (Internships.length > 0) {
-        res.status(200).json(Internships);
-    } else {
-        res.status(404).json({
-            message: "No Content Writing Internship found",
-        });
-    }
+  const Internships = await Internship.find({ type: "contentwriting" });
+  if (Internships.length > 0) {
+    res.status(200).json(Internships);
+  } else {
+    res.status(404).json({
+      message: "No Content Writing Internship found",
+    });
+  }
 });
 
 // Get details of all Other Internships
 const getAllOtherInternships = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({ type: "other" });
-    if (Internships.length > 0) {
-        res.status(200).json(Internships);
-    } else {
-        res.status(404).json({
-            message: "No Other Internship found",
-        });
-    }
+  const Internships = await Internship.find({ type: "other" });
+  if (Internships.length > 0) {
+    res.status(200).json(Internships);
+  } else {
+    res.status(404).json({
+      message: "No Other Internship found",
+    });
+  }
 });
 
 // Get details of Internship by ID
 const getInternshipById = asyncHandler(async (req, res) => {
-    const foundInternship = await Internship.findById(req.params.id);
-    if (foundInternship) {
-        // console.log("Particular internship details", Internship)
-        res.status(200).json({
-            success: true,
-            data: foundInternship,
-        });
-        console.log("Particular internship details", foundInternship)
-    } else {
-        res.status(404).json({
-            success: false,
-            error: "No Internship found",
-        });
-    }
+  const foundInternship = await Internship.findById(req.params.id);
+  if (foundInternship) {
+    // console.log("Particular internship details", Internship)
+    res.status(200).json({
+      success: true,
+      data: foundInternship,
+    });
+    console.log("Particular internship details", foundInternship);
+  } else {
+    res.status(404).json({
+      success: false,
+      error: "No Internship found",
+    });
+  }
 });
 
 // Get all Internships by ID
 const getAllInternshipsOfUser = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({ userId: req.params.id });
-    if (Internships) {
-        res.status(200).json({
-            success: true,
-            data: Internships,
-        });
-    } else {
-        res.status(404).json({
-            success: false,
-            error: "No Internship found",
-        });
-    }
+  const Internships = await Internship.find({ userId: req.params.id });
+  if (Internships) {
+    res.status(200).json({
+      success: true,
+      data: Internships,
+    });
+  } else {
+    res.status(404).json({
+      success: false,
+      error: "No Internship found",
+    });
+  }
 });
 
 // Get all Internships by instructor
 const getAllInternshipsOfInstructor = asyncHandler(async (req, res) => {
-    const Internships = await Internship.find({ instructorId: req.params.id });
-    if (Internships) {
-        res.status(200).json({
-            success: true,
-            data: Internships,
-        });
-    } else {
-        res.status(404).json({
-            success: false,
-            error: "No Internship found",
-        });
-    }
+  const Internships = await Internship.find({ instructorId: req.params.id });
+  if (Internships) {
+    res.status(200).json({
+      success: true,
+      data: Internships,
+    });
+  } else {
+    res.status(404).json({
+      success: false,
+      error: "No Internship found",
+    });
+  }
 });
 
 // Payment gateway using Razorpay
 const payUsingRazorpay = async (req, res) => {
-    const payment_capture = 1;
-    const amount = 1499;
-    const currency = "INR";
+  const payment_capture = 1;
+  const amount = 1499;
+  const currency = "INR";
 
-    const options = {
-        amount: amount * 100,
-        currency,
-        receipt: shortid.generate(),
-        payment_capture,
-    };
+  const options = {
+    amount: amount * 100,
+    currency,
+    receipt: shortid.generate(),
+    payment_capture,
+  };
 
-    try {
-        const response = await razorpay.orders.create(options);
-        // console.log(response);
-        res.json({
-            id: response.id,
-            currency: response.currency,
-            amount: response.amount,
-        });
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const response = await razorpay.orders.create(options);
+    // console.log(response);
+    res.json({
+      id: response.id,
+      currency: response.currency,
+      amount: response.amount,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {
-    createInternship,
-    //   createChapter,
-    getAllInternships,
-    getAllWebdevInternships,
-    getAllDesigningInternships,
-    getAllContentWritingInternships,
-    getAllDigitalMarketingInternships,
-    getAllDataScienceInternships,
-    getAllOtherInternships,
-    getInternshipById,
-    getAllInternshipsOfUser,
-    getAllInternshipsOfInstructor,
-    payUsingRazorpay,
+  createInternship,
+  //   createChapter,
+  getAllInternships,
+  getAllWebdevInternships,
+  getAllDesigningInternships,
+  getAllContentWritingInternships,
+  getAllDigitalMarketingInternships,
+  getAllDataScienceInternships,
+  getAllOtherInternships,
+  getInternshipById,
+  getAllInternshipsOfUser,
+  getAllInternshipsOfInstructor,
+  payUsingRazorpay,
 };

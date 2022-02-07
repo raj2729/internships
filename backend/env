@@ -1,0 +1,3 @@
+JWT_KEY=THISISAVERYVERYVERYVERYLONGJSONWEBTOKENKEYFORSECURINGTHEWEBSITE
+MONGO_URL=mongodb+srv://vidhishpanchal:vidhishpanchal@cluster0.d78xu.mongodb.net/internshala?retryWrites=true&w=majority
+PORT = 8080
